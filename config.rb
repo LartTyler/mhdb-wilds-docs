@@ -1,6 +1,18 @@
 # Unique header generation
 require './lib/unique_head.rb'
 
+# Global Variables
+set :game_title, 'Game'
+set :game_id, 'id'
+set :base_url, 'https://%s.mhdb.io' % config[:game_id]
+
+set :mhdb_placeholders, lambda { |input|
+  return input
+    .gsub('{{ID}}', config[:game_id])
+    .gsub('{{TITLE}}', config[:game_title])
+    .gsub('{{URL}}', config[:base_url])
+}
+
 # Markdown
 set :markdown_engine, :redcarpet
 set :markdown,
@@ -12,7 +24,8 @@ set :markdown,
     tables: true,
     with_toc_data: true,
     no_intra_emphasis: true,
-    renderer: UniqueHeadCounter
+    renderer: UniqueHeadCounter,
+    autolink: true
 
 # Assets
 set :css_dir, 'stylesheets'

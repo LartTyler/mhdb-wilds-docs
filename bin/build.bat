@@ -1,0 +1,1 @@
+docker run --rm --name mhdb-ID -v %~dp0\..\build:/srv/slate/build -v %dp0\..\source:/srv/slate/source slatedocs/slate build

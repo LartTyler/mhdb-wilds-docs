@@ -38,7 +38,13 @@ under the License.
         >
       <% end %>
     <% end %>
-    <title><%= current_page.data.title || "API Documentation" %></title>
+    <title>
+      <% if current_page.data.title %>
+        <%= config[:mhdb_placeholders].(current_page.data.title) %>
+      <% else %>
+        API Documentation
+      <% end %>
+    </title>
 
     <style media="screen">
       <%= Rouge::Themes::MonokaiSublimeSlate.render(:scope => '.highlight') %>
@@ -117,7 +123,7 @@ under the License.
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <%= page_content %>
+        <%= config[:mhdb_placeholders].(page_content) %>
       </div>
       <div class="dark-box">
         <% if language_tabs.any? %>

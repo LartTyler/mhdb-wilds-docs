@@ -1,17 +1,20 @@
 ---
-title: API Reference
+title: "Monster Hunter: {{TITLE}} API Reference"
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
-  - shell
-  - ruby
-  - python
-  - javascript
+  - shell: cURL
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href="https://github.com/LartTyler/mhdb-core">Visit the project on Github</a>
+  - <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>
 
 includes:
+  - endpoints_ailments
+  - endpoints_armor
+  - endpoints_armor_sets
+  - data_types
+  - searching
+  - projecting
   - errors
 
 search: true
@@ -20,226 +23,48 @@ code_clipboard: true
 
 meta:
   - name: description
-    content: Documentation for the Kittn API
+    content: "Documentation for the Monster Hunter: {{TITLE}} API"
 ---
 
 # Introduction
+Welcome to the API documentation for [{{URL}}]({{URL}}).
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Questions, comments, concerns, complaints? [Join us on Discord!](https://discord.gg/6GEHHQh)
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+## Accessing the API
+The API can be accessed using the base URL `{{URL}}/{locale}`, where `{locale}` is an
+[ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code. For example, to access the API in English, you would
+use the base URL `{{URL}}/en`.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+Note that only the values of certain text fields are localized, not the field names themselves. Additionally, certain
+enumerated values (such as [weapon type](#weapon-type)) are not localized.
 
-# Authentication
+Some fields may not have localized values for every language. If a field has not been localized for your specified
+language, the value will be `null` instead.
 
-> To authorize, use this code:
+### Controlling Response Fields
+All endpoints support a `p` query parameter that can be used to control which fields are included in the response
+from the API. Read the [Projecting Results](#projecting-results) section for more information.
 
-```ruby
-require 'kittn'
+### Filtering Objects in the Response
+All list endpoints support a `q` query parameter that can be used to filter items in the response from the API. A
+"list endpoint" is usually a `GET` request to the top-level path hierarchy, e.g. `GET /items`, but endpoints that
+support filtering will indicate that they fall into this category. Read the [Searching the API](#searching-the-api)
+section for more information.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+Such endpoints also support two additional query parameters, `limit` and `offset`, which can be used to paginate
+results from the API. The `limit` parameter indicates that maximum number of elements that should be included in the
+response, and `offset` is a zero-based index to begin including results from. For example:
 
-```python
-import kittn
+`GET {{URL}}/en/items?limit=10&offset=0`
 
-api = kittn.authorize('meowmeowmeow')
-```
+This would return 10 [Items](#items) from the API, beginning at the first element. To move to the second page, you can
+simply increase `offset` by the number of elements in each page, like so:
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
+`GET {{URL}}/en/items?limit=10&offset=10`
 
-```javascript
-const kittn = require('kittn');
+## Reading this document
+All example URLs use the `en` locale (e.g. "{{URL}}/**en**/items"), but your application can use any valid language code.
 
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Some examples have their properties truncated to save space. Any time you see "[...]", this indicates that the example
+has been truncated, but there would normally be much more data present in the response.
