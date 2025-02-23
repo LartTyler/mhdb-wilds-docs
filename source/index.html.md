@@ -12,6 +12,8 @@ includes:
   - endpoints_ailments
   - endpoints_armor
   - endpoints_armor_sets
+  - endpoints_charms
+  - endpoints_decorations
   - data_types
   - searching
   - projecting

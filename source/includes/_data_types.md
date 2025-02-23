@@ -49,6 +49,5 @@ An enumerated value, one of the following:
 ## CraftingCost
 |Property|Type|Description|
 |---|---|---|
-|id|Integer|ID|
 |quantity|Integer|The amount of the item required for the craft|
 |item|[Item](#items)|The item used as a material for the craft|

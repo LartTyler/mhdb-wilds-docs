@@ -125,10 +125,11 @@ curl "{{URL}}/en/armor/sets/1"
                 {
                     "id": 207,
                     "level": 1,
-                    "modifiers": {},
-                    "skill": 67,
+                    "skill": {
+                        "id": 67,
+                        "name": "Hunger Resistance"
+                    },
                     "description": "Extends the time until your stamina cap decreases by 50%.",
-                    "skillName": "Hunger Resistance"
                 }
             ],
             "armorSet": {
