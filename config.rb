@@ -3,8 +3,8 @@
 require './lib/nesting_unique_head.rb'
 
 # Global Variables
-set :game_title, 'Game'
-set :game_id, 'id'
+set :game_title, 'Wilds'
+set :game_id, 'wilds'
 set :base_url, 'https://%s.mhdb.io' % config[:game_id]
 
 set :mhdb_placeholders, lambda { |input|

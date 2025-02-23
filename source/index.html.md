@@ -30,7 +30,8 @@ search: true
 code_clipboard: true
 
 meta:
-  - name: description
+  -
+    name: description
     content: "Documentation for the Monster Hunter: {{TITLE}} API"
 ---
 
