@@ -17,7 +17,7 @@ This means that, given the structure:
 ## Child
 
 # Second
-## Chilld
+## Child
 ```
 
 The following header IDs would be generated.
