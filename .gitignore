@@ -21,7 +21,10 @@ build/
 .yardoc
 _yardoc
 doc/
-.idea/
 
 # Vagrant artifacts
 ubuntu-*-console.log
+
+# Editors
+/.vs
+/.idea
