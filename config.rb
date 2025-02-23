@@ -1,5 +1,6 @@
 # Unique header generation
-require './lib/unique_head.rb'
+# require './lib/unique_head.rb'
+require './lib/nesting_unique_head.rb'
 
 # Global Variables
 set :game_title, 'Game'
@@ -24,7 +25,7 @@ set :markdown,
     tables: true,
     with_toc_data: true,
     no_intra_emphasis: true,
-    renderer: UniqueHeadCounter,
+    renderer: NestingUniqueHeadCounter,
     autolink: true
 
 # Assets
