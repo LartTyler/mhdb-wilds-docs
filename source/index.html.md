@@ -5,7 +5,7 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
   - shell: cURL
 
 toc_footers:
-  - <a href="https://github.com/LartTyler/mhdb-core">Visit the project on Github</a>
+  - <a href="https://github.com/LartTyler/mhdb-{{ID}}">Visit the project on Github</a>
   - <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>
 
 includes:
@@ -17,6 +17,9 @@ includes:
   - endpoints_items
   - endpoints_locations
   - endpoints_monsters
+  - endpoints_motion_values
+  - endpoints_skills
+  - endpoints_weapons
   - data_types
   - searching
   - projecting
@@ -42,7 +45,7 @@ The API can be accessed using the base URL `{{URL}}/{locale}`, where `{locale}` 
 use the base URL `{{URL}}/en`.
 
 Note that only the values of certain text fields are localized, not the field names themselves. Additionally, certain
-enumerated values (such as [weapon type](#weapon-type)) are not localized.
+enumerated values (such as [weapon type](#weaponkind)) are not localized.
 
 Some fields may not have localized values for every language. If a field has not been localized for your specified
 language, the value will be `null` instead.

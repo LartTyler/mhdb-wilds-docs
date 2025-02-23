@@ -19,7 +19,7 @@ Included here are data types shared across several parts of the API.
 |String|Text of any length; fields with this type are localized, and may be `null` if a value has not been set for your selected locale.|
 |Integer|A whole number.|
 |Boolean|A boolean value, either `true` or `false`.|
-|Percent|An integer indicating a percentage; will always be between 0 and 100 inclusive|
+|Percent|An integer indicating a percentage; usually between 0 and 100 inclusive, but some objects (such as motion values) can have values higher than 100%|
 |Enum&lt;T>|An enumerated value, restricted to the values specified.|
 |Array&lt;T>|An array containing zero or more values of type `T`.|
 |DateTime|An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) string representing date and time, in UTC.|
@@ -54,6 +54,32 @@ An enumerated value, one of the following:
 |-|-|-|-|
 |carve|mining|palico|reward|
 |shiny|track|wound||
+
+## DamageKind
+An enumerated value, one of the following:
+
+||||
+|-|-|-|
+|severing|blunt|projectile|
+
+## Elderseal
+An enumerated value, one of the following:
+
+|||
+|-|-|
+|low|average|
+|high||
+
+## DecorationSlot
+Decoration slots are represented by a positive integer indicating the max level of decoration that the slot will accept.
+Usually, these levels are provided as an array, with the number of slots on the item indicated by the number of
+elements in the array.
+
+```json
+{
+    "slots": [1, 2]
+}
+```
 
 ## CraftingCost
 |Property|Type|Description|

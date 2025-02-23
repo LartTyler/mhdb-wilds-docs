@@ -1,0 +1,38 @@
+.sharpness-bar {
+    width: 100px;
+    height: 15px;
+    display: flex;
+    background-color: black;
+    border: solid thin black;
+
+    margin: 0 28px;
+    margin-right: 50%;
+
+    .red {
+        background-color: #be3843;
+    }
+
+    .orange {
+        background-color: #d3673d;
+    }
+
+    .yellow {
+        background-color: #c9b232;
+    }
+
+    .green {
+        background-color: #81b034;
+    }
+
+    .blue {
+        background-color: #3a58d7;
+    }
+
+    .white {
+        background-color: #e2e2e2;
+    }
+
+    .purple {
+        background-color: #885aec;
+    }
+}
