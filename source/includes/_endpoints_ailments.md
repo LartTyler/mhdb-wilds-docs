@@ -5,31 +5,7 @@
 [Searching the API]: #searching-the-api
 
 # Ailments
-```json
-{
-    "id": 1,
-    "name": "Blastblight",
-    "description": "Blastblight will cause a [...]",
-    "recovery": {
-        "actions": [
-            "dodge"
-        ],
-        "items": []
-    },
-    "protection": {
-        "items": [],
-        "skills": [
-            {
-                "id": 6,
-                "name": "Blast Resistance",
-                "description": "Grants protection against blastblight."
-            }
-        ]
-    }
-}
-```
-
-### Properties
+## Properties
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The ID of the ailment|
@@ -85,7 +61,7 @@ curl "{{URL}}/en/ailments"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/ailments`
 
 ## Retrieve an ailment
@@ -121,10 +97,9 @@ curl "{{URL}}/en/ailments/1"
 
 This endpoint retrieves a single ailment by its ID.
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/en/ailments/<id>`
 
-### URL Parameters
 |Parameter|Type|Description|
 |---|---|---|
 |id|Integer|The ailment's ID|

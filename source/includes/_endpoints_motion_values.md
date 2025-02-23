@@ -1,6 +1,7 @@
 [MotionValue]: #motion-values
 
 # Motion Values
+## Properties
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The motion value's ID|
@@ -38,7 +39,7 @@ curl "{{URL}}/en/motion-values"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/motion-values`
 
 ## List all motion values by weapon
@@ -68,7 +69,7 @@ curl -G "{{URL}}/en/motion-values" --data-urlencode 'q={"weapon": "hammer"}'
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/motion-values?q={"weapon": "{type}"}`
 
 |Parameter|Type|Description|
@@ -97,7 +98,7 @@ curl "{{URL}}/en/motion-values/119
 }
 ```
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/motion-values/{id}`
 
 |Parameter|Type|Description|

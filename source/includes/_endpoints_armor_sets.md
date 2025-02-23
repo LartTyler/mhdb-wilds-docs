@@ -1,7 +1,7 @@
 [ArmorSet]: #armor-sets
 
 # Armor Sets
-### Properties
+## Properties
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The armor set's ID|
@@ -85,7 +85,7 @@ curl "{{URL}}/en/armor/sets"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/armor/sets`
 
 ## Retrieve an armor set
@@ -148,10 +148,9 @@ curl "{{URL}}/en/armor/sets/1"
 
 This endpoint retrieves a single armor set by its ID.
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/armor/sets/{id}`
 
-### URL Parameters
 |Parameter|Type|Description|
 |---|---|---|
 |id|Integer|The armor set's ID|

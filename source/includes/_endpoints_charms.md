@@ -1,6 +1,7 @@
 [Charm]: #charms
 
 # Charms
+## Properties
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The charm's ID|
@@ -79,7 +80,7 @@ curl "{{URL}}/en/charms"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/charms`
 
 ## Retrieve a charm
@@ -134,10 +135,9 @@ curl "{{URL}}/en/charms/1"
 
 This endpoint retrieves a charm by its ID.
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/charms/{id}`
 
-### URL Parameters
 |Parameter|Type|Description|
 |---|---|---|
 |id|Integer|The charm's ID|

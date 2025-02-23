@@ -1,6 +1,7 @@
 [Monster]: #monsters
 
 # Monsters
+## Properties
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The monster's ID|
@@ -185,7 +186,7 @@ curl "{{URL}}/en/monsters"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/monsters`
 
 ## Retrieve a monster
@@ -261,7 +262,7 @@ curl "{{URL}}/en/monsters/20"
 
 This endpoint retrieves a monster by its ID.
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/monsters/{id}`
 
 |Parameter|Type|Description|

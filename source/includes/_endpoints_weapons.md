@@ -1,6 +1,7 @@
 [Weapon]: #weapons
 
 # Weapons
+## Properties
 A [union type](#union-types), identified by the `kind` field.
 
 |Property|Type|Description|
@@ -311,7 +312,7 @@ curl "{{URL}}/en/weapons"
 
 This is a list endpoint, and supports [filtering](#filterin-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/weapons`
 
 ## List all weapons by type
@@ -371,7 +372,7 @@ curl -G "{{URL}}/en/weapons" --data-urlencode 'q={"kind": "great-sword"}'
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/weapons?q={"kind": "{kind}"}`
 
 |Parameter|Type|Description|
@@ -434,7 +435,7 @@ curl "{{URL}}/en/weapons/1"
 
 Retrieves a single weapon by its ID.
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/weapons/{id}`
 
 |Parameter|Type|Description|

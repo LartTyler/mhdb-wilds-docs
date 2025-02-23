@@ -47,14 +47,6 @@ An enumerated value, one of the following:
 |-|-|-|-|
 |poison|sleep|paralysis|stun|
 
-## RewardConditionKind
-An enumerated value, one of the following:
-
-|||||
-|-|-|-|-|
-|carve|mining|palico|reward|
-|shiny|track|wound||
-
 ## DamageKind
 An enumerated value, one of the following:
 

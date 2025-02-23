@@ -3,70 +3,7 @@
 [SkillRank]: #skillrank
 
 # Armor
-```json
-{
-    "id": 1,
-    "name": "Leather Headgear",
-    "kind": "head",
-    "rank": "low",
-    "rarity": 1,
-    "defense": {
-        "base": 2,
-        "max": 38,
-        "augmented": 68
-    },
-    "resistances": {
-        "fire": 2,
-        "water": 0,
-        "ice": 0,
-        "thunder": 0,
-        "dragon": 0
-    },
-    "slots": [],
-    "skills": [
-        {
-            "id": 207,
-            "level": 1,
-            "description": "Extends the time until your stamina cap decreases by 50%.",
-            "skill": {
-                "id": 67,
-                "name": "Hunger Resistance"
-            }
-        }
-    ],
-    "armorSet": {
-        "id": 1,
-        "rank": "low",
-        "name": "Leather",
-        "pieces": [
-            {
-                "id": 1,
-                "name": "Leather Headgear"
-            },
-            [...]
-        ],
-        "bonus": null
-    },
-    "crafting": {
-        "zennyCost": 100,
-        "materials": [
-            {
-                "quantity": 2,
-                "item": {
-                    "id": 116,
-                    "rarity": 4,
-                    "carryLimit": 99,
-                    "value": 60,
-                    "name": "Iron Ore",
-                    "description": "Ore that can be smelted into metal and used for many different purposes."
-                }
-            }
-        ]
-    }
-}
-```
-
-### Properties
+## Properties
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The armor's ID|
@@ -140,7 +77,7 @@ curl "{{URL}}/en/armor"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-### HTTP Request
+#### HTTP Request
 `GET {{URL}}/{locale}/armor`
 
 ## Retrieve an armor
@@ -168,10 +105,9 @@ curl "{{URL}}/en/armor/1"
 
 This endpoint retrieves a single armor object by its ID.
 
-### HTTP Request
-`GET {{URL}}/en/armor/<id>`
+#### HTTP Request
+`GET {{URL}}/en/armor/{id}`
 
-### URL Parameters
 |Parameter|Type|Description|
 |---|---|---|
 |id|Integer|The armor's ID|
