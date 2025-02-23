@@ -206,5 +206,5 @@ restore_head() {
 
 parse_args "$@"
 
-run_build
+# run_build
 main "$@"
