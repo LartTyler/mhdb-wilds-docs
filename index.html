@@ -10,7 +10,7 @@
             content="Documentation for the Monster Hunter: {{TITLE}} API"
         >
     <title>
-        Monster Hunter: Game API Reference
+        Monster Hunter: Wilds API Reference
     </title>
 
     <style media="screen">
@@ -727,13 +727,13 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the API documentation for <a href="https://id.mhdb.io">https://id.mhdb.io</a>.</p>
+<p>Welcome to the API documentation for <a href="https://wilds.mhdb.io">https://wilds.mhdb.io</a>.</p>
 
 <p>Questions, comments, concerns, complaints? <a href="https://discord.gg/6GEHHQh">Join us on Discord!</a></p>
 <h2 id='accessing-the-api'>Accessing the API</h2>
-<p>The API can be accessed using the base URL <code>https://id.mhdb.io/{locale}</code>, where <code>{locale}</code> is an
+<p>The API can be accessed using the base URL <code>https://wilds.mhdb.io/{locale}</code>, where <code>{locale}</code> is an
 <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO 639-1</a> language code. For example, to access the API in English, you would
-use the base URL <code>https://id.mhdb.io/en</code>.</p>
+use the base URL <code>https://wilds.mhdb.io/en</code>.</p>
 
 <p>Note that only the values of certain text fields are localized, not the field names themselves. Additionally, certain
 enumerated values (such as <a href="#weaponkind">weapon type</a>) are not localized.</p>
@@ -753,14 +753,14 @@ section for more information.</p>
 results from the API. The <code>limit</code> parameter indicates that maximum number of elements that should be included in the
 response, and <code>offset</code> is a zero-based index to begin including results from. For example:</p>
 
-<p><code>GET https://id.mhdb.io/en/items?limit=10&amp;offset=0</code></p>
+<p><code>GET https://wilds.mhdb.io/en/items?limit=10&amp;offset=0</code></p>
 
 <p>This would return 10 <a href="#items">Items</a> from the API, beginning at the first element. To move to the second page, you can
 simply increase <code>offset</code> by the number of elements in each page, like so:</p>
 
-<p><code>GET https://id.mhdb.io/en/items?limit=10&amp;offset=10</code></p>
+<p><code>GET https://wilds.mhdb.io/en/items?limit=10&amp;offset=10</code></p>
 <h2 id='reading-this-document'>Reading this document</h2>
-<p>All example URLs use the <code>en</code> locale (e.g. &quot;https://id.mhdb.io/<strong>en</strong>/items&quot;), but your application can use any valid language code.</p>
+<p>All example URLs use the <code>en</code> locale (e.g. &quot;https://wilds.mhdb.io/<strong>en</strong>/items&quot;), but your application can use any valid language code.</p>
 
 <p>Some examples have their properties truncated to save space. Any time you see &quot;[...]&quot;, this indicates that the example
 has been truncated, but there would normally be much more data present in the response.</p>
@@ -831,7 +831,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>An array of skills that can mitigate or prevent the ailment</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-ailments'>List all ailments</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/ailments"</span>
+<h2 id='list-all-ailments'>List all ailments</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/ailments"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#ailments">Ailment</a> objects.</p>
@@ -863,8 +863,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/ailments</code></p>
-<h2 id='retrieve-an-ailment'>Retrieve an ailment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/ailments/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/ailments</code></p>
+<h2 id='retrieve-an-ailment'>Retrieve an ailment</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/ailments/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#ailments">Ailment</a> object.</p>
@@ -893,7 +893,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This endpoint retrieves a single ailment by its ID.</p>
 <h4 id='ailments-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/en/ailments/&lt;id&gt;</code></p>
+<p><code>GET https://wilds.mhdb.io/en/ailments/&lt;id&gt;</code></p>
 
 <table><thead>
 <tr>
@@ -1075,7 +1075,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>An array of materials used to craft the armor</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-armor'>List all armor</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/armor"</span>
+<h2 id='list-all-armor'>List all armor</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#armor">Armor</a> objects.</p>
@@ -1099,8 +1099,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='armor-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/armor</code></p>
-<h2 id='retrieve-an-armor'>Retrieve an armor</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/armor/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/armor</code></p>
+<h2 id='retrieve-an-armor'>Retrieve an armor</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#armor">Armor</a> object.</p>
@@ -1121,7 +1121,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This endpoint retrieves a single armor object by its ID.</p>
 <h4 id='armor-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/en/armor/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/en/armor/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -1213,7 +1213,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>The skill granted by this rank of the bonus</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-armor-sets'>List all armor sets</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/armor/sets"</span>
+<h2 id='list-all-armor-sets'>List all armor sets</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor/sets"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#armor-sets">ArmorSet</a> objects.</p>
@@ -1271,8 +1271,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='armor-sets-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/armor/sets</code></p>
-<h2 id='retrieve-an-armor-set'>Retrieve an armor set</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/armor/sets/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/armor/sets</code></p>
+<h2 id='retrieve-an-armor-set'>Retrieve an armor set</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor/sets/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#armor-sets">ArmorSet</a> object.</p>
@@ -1328,7 +1328,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This endpoint retrieves a single armor set by its ID.</p>
 <h4 id='armor-sets-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/armor/sets/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/armor/sets/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -1430,7 +1430,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>An array of materials used to craft the charm</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-charms'>List all charms</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/charms"</span>
+<h2 id='list-all-charms'>List all charms</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/charms"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#charms">Charm</a> objects.</p>
@@ -1481,8 +1481,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='charms-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/charms</code></p>
-<h2 id='retrieve-a-charm'>Retrieve a charm</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/charms/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/charms</code></p>
+<h2 id='retrieve-a-charm'>Retrieve a charm</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/charms/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#charms">Charm</a> object.</p>
@@ -1530,7 +1530,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This endpoint retrieves a charm by its ID.</p>
 <h4 id='charms-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/charms/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/charms/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -1579,7 +1579,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>The skills granted by this decoration</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-decorations'>List all decorations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/decorations"</span>
+<h2 id='list-all-decorations'>List all decorations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/decorations"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#decorations">Decoration</a> objects.</p>
@@ -1607,8 +1607,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='decorations-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/decorations</code></p>
-<h2 id='retrieve-a-decoration'>Retrieve a decoration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/decorations/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/decorations</code></p>
+<h2 id='retrieve-a-decoration'>Retrieve a decoration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/decorations/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#decorations">Decoration</a> object.</p>
@@ -1633,7 +1633,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>Retrieves a decoration by its ID.</p>
 <h4 id='decorations-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/decorations/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/decorations/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -1687,7 +1687,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>The value of the item when sold to a vendor</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-items'>List all items</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/items"</span>
+<h2 id='list-all-items'>List all items</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/items"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#items">Item</a> objects.</p>
@@ -1705,8 +1705,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='items-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/items</code></p>
-<h2 id='retrieve-an-item'>Retrieve an item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/items/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/items</code></p>
+<h2 id='retrieve-an-item'>Retrieve an item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/items/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#items">Item</a> object.</p>
@@ -1722,7 +1722,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This endpoint retrieves an item by its ID.</p>
 <h4 id='items-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/items/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/items/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -1790,7 +1790,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>Which zone the camp is located in</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-locations'>List all locations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/locations"</span>
+<h2 id='list-all-locations'>List all locations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/locations"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#locations">Location</a> objects.</p>
@@ -1813,8 +1813,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='locations-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/locations</code></p>
-<h2 id='retrieve-a-location'>Retrieve a location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/locations/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/locations</code></p>
+<h2 id='retrieve-a-location'>Retrieve a location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/locations/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#locations">Location</a> object.</p>
@@ -1833,7 +1833,7 @@ has been truncated, but there would normally be much more data present in the re
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h4 id='locations-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/locations/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/locations/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -2188,7 +2188,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>wound</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-monsters'>List all monsters</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/monsters"</span>
+<h2 id='list-all-monsters'>List all monsters</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/monsters"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#monsters">Monster</a> objects.</p>
@@ -2259,8 +2259,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='monsters-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/monsters</code></p>
-<h2 id='retrieve-a-monster'>Retrieve a monster</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/monsters/20"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/monsters</code></p>
+<h2 id='retrieve-a-monster'>Retrieve a monster</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/monsters/20"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#monsters">Monster</a> object.</p>
@@ -2329,7 +2329,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This endpoint retrieves a monster by its ID.</p>
 <h4 id='monsters-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/monsters/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/monsters/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -2388,7 +2388,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>An array indicating the number of times the attack hits, and what percentage of weapon damage is dealt by each hit</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-motion-values'>List all motion values</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/motion-values"</span>
+<h2 id='list-all-motion-values'>List all motion values</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/motion-values"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#motion-values">MotionValue</a> objects.</p>
@@ -2411,8 +2411,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='motion-values-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/motion-values</code></p>
-<h2 id='list-all-motion-values-by-weapon'>List all motion values by weapon</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> <span class="s2">"https://id.mhdb.io/en/motion-values"</span> <span class="nt">--data-urlencode</span> <span class="s1">'q={"weapon": "hammer"}'</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/motion-values</code></p>
+<h2 id='list-all-motion-values-by-weapon'>List all motion values by weapon</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> <span class="s2">"https://wilds.mhdb.io/en/motion-values"</span> <span class="nt">--data-urlencode</span> <span class="s1">'q={"weapon": "hammer"}'</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a list of <a href="#motion-values">MotionValue</a> objects for the Hammer.</p>
@@ -2435,7 +2435,7 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='motion-values-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/motion-values?q={&quot;weapon&quot;: &quot;{type}&quot;}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/motion-values?q={&quot;weapon&quot;: &quot;{type}&quot;}</code></p>
 
 <table><thead>
 <tr>
@@ -2450,7 +2450,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>The type of weapon to search for</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-a-motion-value'>Retrieve a motion value</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/motion-values/119
+<h2 id='retrieve-a-motion-value'>Retrieve a motion value</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/motion-values/119
 </span></code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#motion-values">MotionValue</a> object.</p>
@@ -2468,7 +2468,7 @@ has been truncated, but there would normally be much more data present in the re
     </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charged Big Bang"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h4 id='motion-values-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/motion-values/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/motion-values/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -2536,7 +2536,7 @@ has been truncated, but there would normally be much more data present in the re
 <td>The skill level of the rank</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-skills'>List all skills</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/skills"</span>
+<h2 id='list-all-skills'>List all skills</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/skills"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#skills">Skill</a> objects.</p>
@@ -2562,8 +2562,8 @@ has been truncated, but there would normally be much more data present in the re
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='skills-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/skills</code></p>
-<h2 id='retrieve-a-skill'>Retrieve a skill</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/skills/1"</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/skills</code></p>
+<h2 id='retrieve-a-skill'>Retrieve a skill</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/skills/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#skills">Skill</a> object.</p>
@@ -2585,7 +2585,7 @@ has been truncated, but there would normally be much more data present in the re
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h4 id='skills-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/skills/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/skills/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -3376,7 +3376,7 @@ such cases, no subtype will be listed in the table below.</p>
 <td>The level at which the ammo supports rapid fire</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-weapons'>List all weapons</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/weapons"</span>
+<h2 id='list-all-weapons'>List all weapons</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/weapons"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#weapons">Weapon</a> objects.</p>
@@ -3429,8 +3429,8 @@ such cases, no subtype will be listed in the table below.</p>
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filterin-objects-in-the-response">filtering</a>.</p>
 <h4 id='weapons-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/weapons</code></p>
-<h2 id='list-all-weapons-by-type'>List all weapons by type</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> <span class="s2">"https://id.mhdb.io/en/weapons"</span> <span class="nt">--data-urlencode</span> <span class="s1">'q={"kind": "great-sword"}'</span>
+<p><code>GET https://wilds.mhdb.io/{locale}/weapons</code></p>
+<h2 id='list-all-weapons-by-type'>List all weapons by type</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> <span class="s2">"https://wilds.mhdb.io/en/weapons"</span> <span class="nt">--data-urlencode</span> <span class="s1">'q={"kind": "great-sword"}'</span>
 </code></pre></div>
 <blockquote>
 <p>Returns an array of <a href="#weapons">Weapon</a> objects that are all Great Swords.</p>
@@ -3483,7 +3483,7 @@ such cases, no subtype will be listed in the table below.</p>
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
 <h4 id='weapons-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/weapons?q={&quot;kind&quot;: &quot;{kind}&quot;}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/weapons?q={&quot;kind&quot;: &quot;{kind}&quot;}</code></p>
 
 <table><thead>
 <tr>
@@ -3498,7 +3498,7 @@ such cases, no subtype will be listed in the table below.</p>
 <td>The type of weapon to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='retrieve-a-weapon'>Retrieve a weapon</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://id.mhdb.io/en/weapons/1"</span>
+<h2 id='retrieve-a-weapon'>Retrieve a weapon</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/weapons/1"</span>
 </code></pre></div>
 <blockquote>
 <p>Returns a single <a href="#weapons">Weapon</a> object.</p>
@@ -3549,7 +3549,7 @@ such cases, no subtype will be listed in the table below.</p>
 </span></code></pre></div>
 <p>Retrieves a single weapon by its ID.</p>
 <h4 id='weapons-http-request'>HTTP Request</h4>
-<p><code>GET https://id.mhdb.io/{locale}/weapons/{id}</code></p>
+<p><code>GET https://wilds.mhdb.io/{locale}/weapons/{id}</code></p>
 
 <table><thead>
 <tr>
@@ -3756,7 +3756,7 @@ of several discrete types an object actually represents.</p>
 <code>Vehicle</code>, with shared fields present on the supertype (in our example, <code>manufacturer</code> and <code>year</code>). The <code>kind</code> field
 indicates which of our two subtypes (<code>Car</code> or <code>Boat</code>) the object actually represents; if <code>kind</code> is set to &quot;car&quot;, we know
 that the car-specific fields <code>vin</code> and <code>wheels</code> will be present, likewise if the value is &quot;boat&quot;.</p>
-<h1 id='searching-the-api'>Searching the API</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://id.mhdb.io/en/items?q={"value":{"$gte":1000}}'</span>
+<h1 id='searching-the-api'>Searching the API</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://wilds.mhdb.io/en/items?q={"value":{"$gte":1000}}'</span>
 </code></pre></div>
 <blockquote>
 <p>Only items with a sell value of at least 1000 will be included in the array returned from the API.</p>
@@ -3805,7 +3805,7 @@ query would cause the API to only include objects where the <code>name</code> fi
 
 <p>In the example to the right, the greater-than operator (<code>$gt</code>) is being used to only return objects whose base defense
 value is greater than 50. Note that nested fields can be specified by using dot-notation.</p>
-<h1 id='projecting-results'>Projecting Results</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://id.mhdb.io/en/items?p={"id": true, "name":true}'</span>
+<h1 id='projecting-results'>Projecting Results</h1><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://wilds.mhdb.io/en/items?p={"id": true, "name":true}'</span>
 </code></pre></div>
 <blockquote>
 <p>The response from the API will only include the <code>id</code> and <code>name</code> field.</p>
