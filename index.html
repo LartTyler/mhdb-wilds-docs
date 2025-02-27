@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta
             name="description"
-            content="Documentation for the Monster Hunter: {{TITLE}} API"
+            content="Documentation for the unofficial Monster Hunter: Wilds API"
         >
     <title>
         Monster Hunter: Wilds API Reference
@@ -298,7 +298,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -309,6 +309,7 @@
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -326,6 +327,9 @@
                           </li>
                           <li>
                             <a href="#filtering-objects-in-the-response" class="toc-h3 toc-link" data-title="Filtering Objects in the Response">Filtering Objects in the Response</a>
+                          </li>
+                          <li>
+                            <a href="#caching" class="toc-h3 toc-link" data-title="Caching">Caching</a>
                           </li>
                       </ul>
                   </li>
@@ -719,7 +723,7 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href="https://github.com/LartTyler/mhdb-{{ID}}">Visit the project on Github</a></li>
+            <li><a href="https://github.com/LartTyler/mhdb-wilds">Visit the project on Github</a></li>
             <li><a href="https://discord.gg/6GEHHQh">Join us on Discord</a></li>
         </ul>
     </div>
@@ -727,6 +731,22 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
+<aside class="warning">
+  Currently, the API does not contain any data. Requests to the endpoints in this document will return empty data sets.
+</aside>
+
+<aside class="notice">
+  In the <em>Monster Hunter: World</em> version of this API, the API was populated by a suite of scrapers that pulled from
+  various fan sites. I also implemented a system by which volunteers could help me manually enter data into the API. As
+  you can probably guess, both methods were error-prone and often led to missing or out of date information, especially
+  after an update. Manual data entry became the primary way by which the API was updated, leading to burnout among the
+  volunteers and myself.<br><br>
+
+  This time around, my goal is to fully automate the process. I've found several tools (via the
+  <a href="https://discord.gg/gJwMdhK">Monster Hunter Modding Discord</a>) that I believe I can use to accomplish this,
+  and I hope to have something ready Very Soon™.
+</aside>
+
 <p>Welcome to the API documentation for <a href="https://wilds.mhdb.io">https://wilds.mhdb.io</a>.</p>
 
 <p>Questions, comments, concerns, complaints? <a href="https://discord.gg/6GEHHQh">Join us on Discord!</a></p>
@@ -759,6 +779,14 @@ response, and <code>offset</code> is a zero-based index to begin including resul
 simply increase <code>offset</code> by the number of elements in each page, like so:</p>
 
 <p><code>GET https://wilds.mhdb.io/en/items?limit=10&amp;offset=10</code></p>
+<h3 id='caching'>Caching</h3>
+<p>All <code>GET</code> requests to the API are cached by Cloudflare, and will include relevant cache headers. This means that while
+some requests may be slow for large responses when they are first requested (such as retrieving
+<a href="#list-all-armor">all armor pieces</a>), subsequent requests to the endpoint will be very fast.</p>
+
+<p>Additionally, you can optimize your application further by implementing local caching. Simply include the
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since"><code>If-Modified-Since</code></a> HTTP header; the
+server will respond with a <code>304 Not Modified</code> response if your locally cached data is up-to-date.</p>
 <h2 id='reading-this-document'>Reading this document</h2>
 <p>All example URLs use the <code>en</code> locale (e.g. &quot;https://wilds.mhdb.io/<strong>en</strong>/items&quot;), but your application can use any valid language code.</p>
 
@@ -1098,7 +1126,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='armor-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/armor</code></p>
 <h2 id='retrieve-an-armor'>Retrieve an armor</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor/1"</span>
 </code></pre></div>
@@ -1270,7 +1298,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='armor-sets-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/armor/sets</code></p>
 <h2 id='retrieve-an-armor-set'>Retrieve an armor set</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor/sets/1"</span>
 </code></pre></div>
@@ -1480,7 +1508,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='charms-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/charms</code></p>
 <h2 id='retrieve-a-charm'>Retrieve a charm</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/charms/1"</span>
 </code></pre></div>
@@ -1606,7 +1634,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='decorations-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/decorations</code></p>
 <h2 id='retrieve-a-decoration'>Retrieve a decoration</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/decorations/1"</span>
 </code></pre></div>
@@ -1704,7 +1732,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='items-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/items</code></p>
 <h2 id='retrieve-an-item'>Retrieve an item</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/items/1"</span>
 </code></pre></div>
@@ -1812,7 +1840,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='locations-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/locations</code></p>
 <h2 id='retrieve-a-location'>Retrieve a location</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/locations/1"</span>
 </code></pre></div>
@@ -2258,7 +2286,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='monsters-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/monsters</code></p>
 <h2 id='retrieve-a-monster'>Retrieve a monster</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/monsters/20"</span>
 </code></pre></div>
@@ -2410,7 +2438,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='motion-values-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/motion-values</code></p>
 <h2 id='list-all-motion-values-by-weapon'>List all motion values by weapon</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> <span class="s2">"https://wilds.mhdb.io/en/motion-values"</span> <span class="nt">--data-urlencode</span> <span class="s1">'q={"weapon": "hammer"}'</span>
 </code></pre></div>
@@ -2561,7 +2589,7 @@ has been truncated, but there would normally be much more data present in the re
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filtering-objects-in-the-response">filtering</a>.</p>
-<h4 id='skills-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/skills</code></p>
 <h2 id='retrieve-a-skill'>Retrieve a skill</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/skills/1"</span>
 </code></pre></div>
@@ -3428,7 +3456,7 @@ such cases, no subtype will be listed in the table below.</p>
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This is a list endpoint, and supports <a href="#filterin-objects-in-the-response">filtering</a>.</p>
-<h4 id='weapons-http-request'>HTTP Request</h4>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>GET https://wilds.mhdb.io/{locale}/weapons</code></p>
 <h2 id='list-all-weapons-by-type'>List all weapons by type</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-G</span> <span class="s2">"https://wilds.mhdb.io/en/weapons"</span> <span class="nt">--data-urlencode</span> <span class="s1">'q={"kind": "great-sword"}'</span>
 </code></pre></div>
@@ -3869,6 +3897,7 @@ error, and may change slightly depending on the error conditions.</p>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
