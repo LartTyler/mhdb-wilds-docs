@@ -3,6 +3,7 @@ title: "Monster Hunter: {{TITLE}} API Reference"
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell: cURL
+  - javascript
 
 toc_footers:
   - <a href="https://github.com/LartTyler/mhdb-{{ID}}">Visit the project on Github</a>
@@ -36,6 +37,22 @@ meta:
 ---
 
 # Introduction
+<aside class="warning">
+  Currently, the API does not contain any data. Requests to the endpoints in this document will return empty data sets.
+</aside>
+
+<aside class="notice">
+  In the Monster Hunter: World version of this API, the API was populated by a suite of scrapers that pulled from
+  various fan sites. I also implemented a system by which volunteers could help me manually enter data into the API. As
+  you can probably guess, both methods were error-prone and often led to missing or out of date information, especially
+  after an update. Manual data entry became the primary way by which the API was updated, leading to burnout among the
+  volunteers and myself.<br><br>
+
+  This time around, my goal is to fully automate the process. I've found several tools (via the
+  <a href="https://discord.gg/gJwMdhK">Monster Hunter Modding Discord</a>) that I believe I can use to accomplish this,
+  and I hope to have something ready Very Soon™.
+</aside>
+
 Welcome to the API documentation for [{{URL}}]({{URL}}).
 
 Questions, comments, concerns, complaints? [Join us on Discord!](https://discord.gg/6GEHHQh)
