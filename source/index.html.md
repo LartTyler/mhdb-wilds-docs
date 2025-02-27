@@ -42,7 +42,7 @@ meta:
 </aside>
 
 <aside class="notice">
-  In the Monster Hunter: World version of this API, the API was populated by a suite of scrapers that pulled from
+  In the <em>Monster Hunter: World</em> version of this API, the API was populated by a suite of scrapers that pulled from
   various fan sites. I also implemented a system by which volunteers could help me manually enter data into the API. As
   you can probably guess, both methods were error-prone and often led to missing or out of date information, especially
   after an update. Manual data entry became the primary way by which the API was updated, leading to burnout among the
