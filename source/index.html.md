@@ -31,9 +31,9 @@ search: true
 code_clipboard: true
 
 meta:
-  -
+  - 
     name: description
-    content: "Documentation for the Monster Hunter: {{TITLE}} API"
+    content: "Documentation for the unofficial Monster Hunter: {{TITLE}} API"
 ---
 
 # Introduction
