@@ -72,6 +72,15 @@ simply increase `offset` by the number of elements in each page, like so:
 
 `GET {{URL}}/en/items?limit=10&offset=10`
 
+### Caching
+All `GET` requests to the API are cached by Cloudflare, and will include relevant cache headers. This means that while
+some requests may be slow for large responses when they are first requested (such as retrieving
+[all armor pieces](#list-all-armor)), subsequent requests to the endpoint will be very fast.
+
+Additionally, you can optimize your application further by implementing local caching. Simply include the
+[`If-Modified-Since`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since) HTTP header; the
+server will respond with a `304 Not Modified` response if your locally cached data is up-to-date.
+
 ## Reading this document
 All example URLs use the `en` locale (e.g. "{{URL}}/**en**/items"), but your application can use any valid language code.
 
