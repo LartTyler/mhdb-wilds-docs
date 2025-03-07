@@ -8,6 +8,7 @@
 |---|---|---|
 |id|Integer|The armor's ID|
 |name|String|The armor's name|
+|description|String|The armor's description|
 |kind|Enum<[ArmorKind](#armorkind)>|The slot the armor is worn in|
 |rank|Enum<[Rank](#rank)>|The armor's hunter rank group|
 |rarity|Integer|The armor's rarity value|
@@ -31,7 +32,6 @@ An enumerated value, one of:
 |---|---|---|
 |base|Integer|The armor's base defense value|
 |max|Integer|The armor's maximum, un-augmented defense value|
-|augmented|Integer|The armor's fully upgraded defense value|
 
 ### ArmorResistances
 |Property|Type|Description|
@@ -59,17 +59,67 @@ curl "{{URL}}/en/armor"
 ```json
 [
     {
-        "id": 1,
-        "name": "Leather Headgear",
         "kind": "head",
-        "rank": "low",
-        "rarity": 1,
-        "defense": {
-            "base": 2,
-            "max": 38,
-            "augmented": 68
+        "name": "Conga Helm α",
+        "description": "Head armor made from Congalala materials. Remember: it's \"feral,\" not \"unkempt.\"",
+        "rank": "high",
+        "rarity": 5,
+        "resistances": {
+            "fire": -3,
+            "water": 1,
+            "ice": -1,
+            "thunder": 1,
+            "dragon": 2
         },
-        [...]
+        "defense": {
+            "base": 36,
+            "max": 60
+        },
+        "skills": [
+            {
+                "skill": {
+                    "id": 104,
+                    "gameId": 850626240,
+                    "name": "Free Meal"
+                },
+                "level": 1,
+                "description": "Activates 10% of the time.",
+                "id": 267
+            },
+            [...]
+        ],
+        "slots": [
+            1
+        ],
+        "armorSet": {
+            "id": 1,
+            "name": "Conga α"
+        },
+        "crafting": {
+            "armor": {
+                "id": 1
+            },
+            "materials": [
+                {
+                    "item": {
+                        "id": 464,
+                        "gameId": 509,
+                        "rarity": 6,
+                        "name": "Congalala Pelt+",
+                        "description": "High-quality Congalala fur. Stout and resilient, an important crafting material once processed.",
+                        "value": 930,
+                        "carryLimit": 99,
+                        "recipes": []
+                    },
+                    "quantity": 2,
+                    "id": 1
+                },
+                [...]
+            ],
+            "zennyCost": 3000,
+            "id": 1
+        },
+        "id": 1
     },
     [...]
 ]
@@ -89,17 +139,67 @@ curl "{{URL}}/en/armor/1"
 
 ```json
 {
-    "id": 1,
-    "name": "Leather Headgear",
     "kind": "head",
-    "rank": "low",
-    "rarity": 1,
-    "defense": {
-        "base": 2,
-        "max": 38,
-        "augmented": 68
+    "name": "Conga Helm α",
+    "description": "Head armor made from Congalala materials. Remember: it's \"feral,\" not \"unkempt.\"",
+    "rank": "high",
+    "rarity": 5,
+    "resistances": {
+        "fire": -3,
+        "water": 1,
+        "ice": -1,
+        "thunder": 1,
+        "dragon": 2
     },
-    [...]
+    "defense": {
+        "base": 36,
+        "max": 60
+    },
+    "skills": [
+        {
+            "skill": {
+                "id": 104,
+                "gameId": 850626240,
+                "name": "Free Meal"
+            },
+            "level": 1,
+            "description": "Activates 10% of the time.",
+            "id": 267
+        },
+        [...]
+    ],
+    "slots": [
+        1
+    ],
+    "armorSet": {
+        "id": 1,
+        "name": "Conga α"
+    },
+    "crafting": {
+        "armor": {
+            "id": 1
+        },
+        "materials": [
+            {
+                "item": {
+                    "id": 464,
+                    "gameId": 509,
+                    "rarity": 6,
+                    "name": "Congalala Pelt+",
+                    "description": "High-quality Congalala fur. Stout and resilient, an important crafting material once processed.",
+                    "value": 930,
+                    "carryLimit": 99,
+                    "recipes": []
+                },
+                "quantity": 2,
+                "id": 1
+            },
+            [...]
+        ],
+        "zennyCost": 3000,
+        "id": 1
+    },
+    "id": 1
 }
 ```
 

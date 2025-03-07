@@ -25,6 +25,19 @@ Included here are data types shared across several parts of the API.
 |DateTime|An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations) string representing date and time, in UTC.|
 |Discriminant&lt;T>|A value of type `T` that indicates which subtype the object represents. See [Union Types](#union-types) for more information.|
 
+## GameId
+The game ID type represents an identifier derived from the game files. This value is a 32-bit signed integer, and will
+_always_ be stable across updates and imports. Due to the way the API is constructed, an object may change its `id`
+field after an import, but objects with a `gameId` field will always use the same value, even if the database were to
+be wiped out and rebuilt.
+
+If you need long-term persistent storage for an object reference for your application, you should use the object's
+game ID if it has one, or the game ID of the nearest parent with one and some unique identifier on the object itself,
+such as:
+
+- For [Armor](#armor), store the `gameId` from the [Armor Set](#armor-sets) and the `kind` from the armor.
+- For [SkillRanks](#skillrank), store the `gameId` from the [Skill](#skills) and the `level` from the skill rank.
+
 ## Rank
 An enumerated value, one of the following:
 
@@ -61,6 +74,13 @@ An enumerated value, one of the following:
 |-|-|
 |low|average|
 |high||
+
+## DecorationKind
+An enumerated value, one of the following:
+
+|||
+|-|-|
+|weapon|armor|
 
 ## DecorationSlot
 Decoration slots are represented by a positive integer indicating the max level of decoration that the slot will accept.

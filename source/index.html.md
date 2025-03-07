@@ -37,20 +37,20 @@ meta:
 ---
 
 # Introduction
-<aside class="warning">
-  Currently, the API does not contain any data. Requests to the endpoints in this document will return empty data sets.
-</aside>
-
 <aside class="notice">
-  In the <em>Monster Hunter: World</em> version of this API, the API was populated by a suite of scrapers that pulled from
-  various fan sites. I also implemented a system by which volunteers could help me manually enter data into the API. As
-  you can probably guess, both methods were error-prone and often led to missing or out of date information, especially
-  after an update. Manual data entry became the primary way by which the API was updated, leading to burnout among the
-  volunteers and myself.<br><br>
+  This API is a work in progress. Some endpoints do not yet contain data, and will simply return an empty
+  JSON array or object (depending on the endpoint).<br><br>
 
-  This time around, my goal is to fully automate the process. I've found several tools (via the
-  <a href="https://discord.gg/gJwMdhK">Monster Hunter Modding Discord</a>) that I believe I can use to accomplish this,
-  and I hope to have something ready Very Soon™.
+  Currently, the following objects have been fully populated into the API:<br>
+  <ul>
+    <li><a href="#armor-sets">Armor Sets</a></li>
+    <li><a href="#armor">Armor</a></li>
+    <li><a href="#decorations">Decorations</a></li>
+    <li><a href="#items">Items</a></li>
+  </ul>
+
+  Want to help get more data into the API? <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>! Deciphering the
+  game files and building the importers needed to populate the API is time consuming, and assistance is always welcome.
 </aside>
 
 Welcome to the API documentation for [{{URL}}]({{URL}}).
@@ -65,8 +65,11 @@ use the base URL `{{URL}}/en`.
 Note that only the values of certain text fields are localized, not the field names themselves. Additionally, certain
 enumerated values (such as [weapon type](#weaponkind)) are not localized.
 
-Some fields may not have localized values for every language. If a field has not been localized for your specified
-language, the value will be `null` instead.
+~~Some fields may not have localized values for every language. If a field has not been localized for your specified
+language, the value will be `null` instead.~~
+
+Since we are now exclusively using data from the game files, all languages supported by Wilds should be translated in
+the API. If you find something that isn't, please let us know!
 
 ### Controlling Response Fields
 All endpoints support a `p` query parameter that can be used to control which fields are included in the response

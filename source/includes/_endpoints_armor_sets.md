@@ -5,15 +5,17 @@
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The armor set's ID|
+|gameId|[GameId](#gameid)|The armor set's ID from the game files|
 |name|String|The armor set's name|
 |pieces|Array<[Armor](#armor)>|An array of armor pieces belonging to the armor set|
-|bonus|[ArmorSetBonus](#armorsetbonus)|An array of bonuses given by the set when a certain number of pieces are worn|
+|bonus|[ArmorSetBonus](#armorsetbonus)|The skill granted by the set when a certain number of pieces from the same set are worn|
+|groupBonus|[ArmorSetBonus](#armorsetbonus)|The skill granted by the set when a certain number of pieces from the same group are worn|
 
 ### ArmorSetBonus
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The bonus's ID|
-|name|String|The name of the armor set bonus|
+|skill|[Skill](#skills)|The skill granted by the bonus|
 |ranks|Array<[ArmorSetBonusRank](#armorsetbonusrank)>|The different ranks of the bonus|
 
 ### ArmorSetBonusRank
@@ -33,51 +35,35 @@ curl "{{URL}}/en/armor/sets"
 ```json
 [
     {
-        "id": 1,
-        "rank": "low",
-        "name": "Leather",
-        "pieces": [
-            {
-                "id": 1,
-                "type": "head",
-                "rank": "low",
-                "rarity": 1,
-                "attributes": {},
-                "defense": {
-                    "base": 2,
-                    "max": 38,
-                    "augmented": 68
-                },
-                "resistances": {
-                    "fire": 2,
-                    "water": 0,
-                    "ice": 0,
-                    "thunder": 0,
-                    "dragon": 0
-                },
-                "name": "Leather Headgear",
-                "slots": [],
-                "skills": [
-                    {
-                        "id": 207,
-                        "level": 1,
-                        "modifiers": {},
-                        "skill": 67,
-                        "description": "Extends the time until your stamina cap decreases by 50%.",
-                        "skillName": "Hunger Resistance"
-                    }
-                ],
-                "armorSet": {
-                    "id": 1
-                },
-                "crafting": {
-                    "zennyCost": 100,
-                    "materials": [...]
-                }
+        "name": "Conga α",
+        "pieces": [...],
+        "bonus": null,
+        "groupBonus": {
+            "id": 1,
+            "skill": {
+                "id": 142,
+                "name": "Fortifying Pelt"
             },
-            [...]
-        ],
-        "bonus": null
+            "ranks": [
+                {
+                    "bonus": {
+                        "id": 1
+                    },
+                    "pieces": 3,
+                    "skill": {
+                        "id": 381,
+                        "skill": {
+                            "id": 142
+                        },
+                        "level": 1,
+                        "description": "Increases attack and defense after fainting during a quest. (Can be used twice.)"
+                    },
+                    "id": 1
+                }
+            ]
+        },
+        "id": 1,
+        "gameId": -2117203456
     },
     [...]
 ]
@@ -97,52 +83,35 @@ curl "{{URL}}/en/armor/sets/1"
 
 ```json
 {
-    "id": 1,
-    "rank": "low",
-    "name": "Leather",
-    "pieces": [
-        {
-            "id": 1,
-            "type": "head",
-            "rank": "low",
-            "rarity": 1,
-            "attributes": {},
-            "defense": {
-                "base": 2,
-                "max": 38,
-                "augmented": 68
-            },
-            "resistances": {
-                "fire": 2,
-                "water": 0,
-                "ice": 0,
-                "thunder": 0,
-                "dragon": 0
-            },
-            "name": "Leather Headgear",
-            "slots": [],
-            "skills": [
-                {
-                    "id": 207,
-                    "level": 1,
-                    "skill": {
-                        "id": 67,
-                        "name": "Hunger Resistance"
-                    },
-                    "description": "Extends the time until your stamina cap decreases by 50%.",
-                }
-            ],
-            "armorSet": {
-                "id": 1
-            },
-            "crafting": {
-                "zennyCost": 100,
-                "materials": [...]
-            }
+    "name": "Conga α",
+    "pieces": [...],
+    "bonus": null,
+    "groupBonus": {
+        "id": 1,
+        "skill": {
+            "id": 142,
+            "name": "Fortifying Pelt"
         },
-        [...]
-    ],
-    "bonus": null
+        "ranks": [
+            {
+                "bonus": {
+                    "id": 1
+                },
+                "pieces": 3,
+                "skill": {
+                    "id": 381,
+                    "skill": {
+                        "id": 142
+                    },
+                    "level": 1,
+                    "description": "Increases attack and defense after fainting during a quest. (Can be used twice.)"
+                },
+                "id": 1
+            }
+        ]
+    },
+    "id": 1,
+    "gameId": -2117203456
 }
 ```
 

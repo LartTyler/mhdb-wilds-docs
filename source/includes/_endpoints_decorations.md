@@ -5,9 +5,12 @@
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|the decoration's ID|
+|gameId|[GameId](#gameid)|The decoration's ID from the game files|
 |name|String|The decoration's name|
+|description|String|The decoration's description|
 |slot|Integer|The minimum level of the slot the decoration can be placed in|
 |rarity|Integer|The decoration's rarity|
+|kind|[DecorationKind](#decorationkind)|What equipment group the decoration is allowed to be used on|
 |skills|Array<[SkillRank](#skillrank)>|The skills granted by this decoration|
 
 ## List all decorations
@@ -20,21 +23,25 @@ curl "{{URL}}/en/decorations"
 ```json
 [
     {
-        "id": 1,
-        "rarity": 5,
+        "name": "Venom Jewel [1]",
+        "description": "A decoration that grants the Poison Attack skill.",
+        "value": 150,
         "slot": 1,
-        "name": "Antidote Jewel 1",
+        "rarity": 3,
+        "kind": "weapon",
         "skills": [
             {
-                "id": 1,
-                "level": 1,
-                "description": "Reduces the number of times you take poison damage.",
                 "skill": {
-                    "id": 1,
-                    "name": "Poison Resistance"
-                }
+                    "id": 12,
+                    "name": "Poison Attack"
+                },
+                "level": 1,
+                "description": "Poison buildup +5% Bonus: +10",
+                "id": 25
             }
-        ]
+        ],
+        "id": 1,
+        "gameId": -2144349312
     },
     [...]
 ]
@@ -54,21 +61,25 @@ curl "{{URL}}/en/decorations/1"
 
 ```json
 {
-    "id": 1,
-    "rarity": 5,
+    "name": "Venom Jewel [1]",
+    "description": "A decoration that grants the Poison Attack skill.",
+    "value": 150,
     "slot": 1,
-    "name": "Antidote Jewel 1",
+    "rarity": 3,
+    "kind": "weapon",
     "skills": [
         {
-            "id": 1,
-            "level": 1,
-            "description": "Reduces the number of times you take poison damage.",
             "skill": {
-                "id": 1,
-                "name": "Poison Resistance"
-            }
+                "id": 12,
+                "name": "Poison Attack"
+            },
+            "level": 1,
+            "description": "Poison buildup +5% Bonus: +10",
+            "id": 25
         }
-    ]
+    ],
+    "id": 1,
+    "gameId": -2144349312
 }
 ```
 
