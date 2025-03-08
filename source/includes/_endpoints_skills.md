@@ -8,6 +8,17 @@
 |name|String|The skill's name|
 |description|String|The skill's description|
 |ranks|Array<[SkillRank](#skillrank)>|An array of possible levels for the skill|
+|kind|[SkillKind](#skillkind)|Where a skill can be found|
+
+### SkillKind
+An enumerated value, one of the following:
+
+|Value|Description|
+|---|---|
+|armor|Skill can be found on armor|
+|weapon|Skill can be found on weapons|
+|set|Skill can be found in armor set bonuses|
+|group|Skill can be found in armor group bonuses|
 
 ### SkillRank
 |Property|Type|Description|
