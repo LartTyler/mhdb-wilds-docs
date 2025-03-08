@@ -563,6 +563,9 @@
                     <a href="#skills-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
                       <ul class="toc-list-h3">
                           <li>
+                            <a href="#skillkind" class="toc-h3 toc-link" data-title="SkillKind">SkillKind</a>
+                          </li>
+                          <li>
                             <a href="#skillrank" class="toc-h3 toc-link" data-title="SkillRank">SkillRank</a>
                           </li>
                       </ul>
@@ -1476,9 +1479,9 @@ has been truncated, but there would normally be much more data present in the re
 <td>The charm&#39;s ID</td>
 </tr>
 <tr>
-<td>name</td>
-<td>String</td>
-<td>The charm&#39;s name</td>
+<td>gameId</td>
+<td><a href="#gameid">GameId</a></td>
+<td>The ID used in the game files to identify the charm</td>
 </tr>
 <tr>
 <td>ranks</td>
@@ -1503,6 +1506,11 @@ has been truncated, but there would normally be much more data present in the re
 <td>name</td>
 <td>String</td>
 <td>The rank&#39;s name</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>The rank&#39;s description</td>
 </tr>
 <tr>
 <td>level</td>
@@ -1556,41 +1564,55 @@ has been truncated, but there would normally be much more data present in the re
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Charm"</span><span class="p">,</span><span class="w">
+
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2084662144</span><span class="p">,</span><span class="w">
         </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"charm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Windproof Charm I"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A charm that grants the Windproof skill."</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"rarity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Charm 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"rarity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"skills"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduces the number of [...]"</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Resistance"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
+                            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Windproof"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Negates minor wind pressure and halves the effects of major wind pressure."</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nl">"crafting"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"charmRank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
                     </span><span class="nl">"craftable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                         </span><span class="p">{</span><span class="w">
-                            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                             </span><span class="nl">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">231</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
                                 </span><span class="nl">"rarity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                                </span><span class="nl">"carryLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
-                                </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">660</span><span class="p">,</span><span class="w">
-                                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pukei-Pukei Sac"</span><span class="p">,</span><span class="w">
-                                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pukei-Pukei material. Obtained [...]"</span><span class="w">
-                            </span><span class="p">}</span><span class="w">
+                                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragonite Ore"</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ore sourced from mining outcrops. A rare material coveted for its durability in armor crafting."</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"carryLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="nl">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656</span><span class="w">
                         </span><span class="p">},</span><span class="w">
                         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
-                    </span><span class="p">]</span><span class="w">
-                </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nl">"zennyCost"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
         </span><span class="p">]</span><span class="w">
@@ -1607,41 +1629,54 @@ has been truncated, but there would normally be much more data present in the re
 <p>Returns a single <a href="#charms">Charm</a> object.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Charm"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2084662144</span><span class="p">,</span><span class="w">
     </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"charm"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Windproof Charm I"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A charm that grants the Windproof skill."</span><span class="p">,</span><span class="w">
             </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"rarity"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Charm 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"rarity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
             </span><span class="nl">"skills"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduces the number of [...]"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Resistance"</span><span class="w">
-                    </span><span class="p">}</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Windproof"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Negates minor wind pressure and halves the effects of major wind pressure."</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">77</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nl">"crafting"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"charmRank"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                </span><span class="p">},</span><span class="w">
                 </span><span class="nl">"craftable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"materials"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">231</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
                             </span><span class="nl">"rarity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                            </span><span class="nl">"carryLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
-                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">660</span><span class="p">,</span><span class="w">
-                            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pukei-Pukei Sac"</span><span class="p">,</span><span class="w">
-                            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pukei-Pukei material. Obtained [...]"</span><span class="w">
-                        </span><span class="p">}</span><span class="w">
+                            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragonite Ore"</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ore sourced from mining outcrops. A rare material coveted for its durability in armor crafting."</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"carryLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                            </span><span class="nl">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1656</span><span class="w">
                     </span><span class="p">},</span><span class="w">
                     </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
-                </span><span class="p">]</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nl">"zennyCost"</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
     </span><span class="p">]</span><span class="w">
@@ -2718,6 +2753,37 @@ has been truncated, but there would normally be much more data present in the re
 <td>ranks</td>
 <td>Array&lt;<a href="#skillrank">SkillRank</a>&gt;</td>
 <td>An array of possible levels for the skill</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="#skillkind">SkillKind</a></td>
+<td>Where a skill can be found</td>
+</tr>
+</tbody></table>
+<h3 id='skillkind'>SkillKind</h3>
+<p>An enumerated value, one of the following:</p>
+
+<table><thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>armor</td>
+<td>Skill can be found on armor</td>
+</tr>
+<tr>
+<td>weapon</td>
+<td>Skill can be found on weapons</td>
+</tr>
+<tr>
+<td>set</td>
+<td>Skill can be found in armor set bonuses</td>
+</tr>
+<tr>
+<td>group</td>
+<td>Skill can be found in armor group bonuses</td>
 </tr>
 </tbody></table>
 <h3 id='skillrank'>SkillRank</h3>
