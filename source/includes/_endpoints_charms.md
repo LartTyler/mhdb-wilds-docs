@@ -5,7 +5,7 @@
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The charm's ID|
-|name|String|The charm's name|
+|gameId|[GameId](#gameid)|The ID used in the game files to identify the charm|
 |ranks|Array<[CharmRank](#charmrank)>|An array levels the charm can be obtained at|
 
 ### CharmRank
@@ -13,6 +13,7 @@
 |---|---|---|
 |id|Integer|The ID of the charm rank|
 |name|String|The rank's name|
+|description|String|The rank's description|
 |level|Integer|The level of the rank|
 |rarity|Integer|The rank's rarity|
 |skills|Array<[SkillRank](#skillrank)>|An array of skills that are granted by this charm|
@@ -35,41 +36,55 @@ curl "{{URL}}/en/charms"
 ```json
 [
     {
-        "id": 234,
-        "name": "Poison Charm",
+        
+        "id": 1,
+        "gameId": -2084662144,
         "ranks": [
             {
+                "charm": {
+                    "id": 1
+                },
+                "name": "Windproof Charm I",
+                "description": "A charm that grants the Windproof skill.",
                 "level": 1,
-                "rarity": 3,
-                "name": "Poison Charm 1",
+                "rarity": 4,
                 "skills": [
                     {
-                        "id": 1,
-                        "level": 1,
-                        "description": "Reduces the number of [...]",
                         "skill": {
-                            "id": 1,
-                            "name": "Poison Resistance"
-                        }
+                            "id": 34,
+                            "name": "Windproof"
+                        },
+                        "level": 1,
+                        "description": "Negates minor wind pressure and halves the effects of major wind pressure.",
+                        "id": 77
                     }
                 ],
                 "crafting": {
+                    "charmRank": {
+                        "id": 1
+                    },
                     "craftable": true,
                     "materials": [
                         {
-                            "quantity": 1,
                             "item": {
-                                "id": 231,
+                                "id": 53,
+                                "gameId": 55,
                                 "rarity": 4,
-                                "carryLimit": 99,
-                                "value": 660,
-                                "name": "Pukei-Pukei Sac",
-                                "description": "Pukei-Pukei material. Obtained [...]"
-                            }
+                                "name": "Dragonite Ore",
+                                "description": "Ore sourced from mining outcrops. A rare material coveted for its durability in armor crafting.",
+                                "value": 480,
+                                "carryLimit": 10,
+                                "recipes": []
+                            },
+                            "quantity": 2,
+                            "id": 1656
                         },
                         [...]
-                    ]
-                }
+                    ],
+                    "zennyCost": 1500,
+                    "id": 1
+                },
+                "id": 1
             },
             [...]
         ]
@@ -92,41 +107,54 @@ curl "{{URL}}/en/charms/1"
 
 ```json
 {
-    "id": 234,
-    "name": "Poison Charm",
+    "id": 1,
+    "gameId": -2084662144,
     "ranks": [
         {
+            "charm": {
+                "id": 1
+            },
+            "name": "Windproof Charm I",
+            "description": "A charm that grants the Windproof skill.",
             "level": 1,
-            "rarity": 3,
-            "name": "Poison Charm 1",
+            "rarity": 4,
             "skills": [
                 {
-                    "id": 1,
-                    "level": 1,
-                    "description": "Reduces the number of [...]",
                     "skill": {
-                        "id": 1,
-                        "name": "Poison Resistance"
-                    }
+                        "id": 34,
+                        "name": "Windproof"
+                    },
+                    "level": 1,
+                    "description": "Negates minor wind pressure and halves the effects of major wind pressure.",
+                    "id": 77
                 }
             ],
             "crafting": {
+                "charmRank": {
+                    "id": 1
+                },
                 "craftable": true,
                 "materials": [
                     {
-                        "quantity": 1,
                         "item": {
-                            "id": 231,
+                            "id": 53,
+                            "gameId": 55,
                             "rarity": 4,
-                            "carryLimit": 99,
-                            "value": 660,
-                            "name": "Pukei-Pukei Sac",
-                            "description": "Pukei-Pukei material. Obtained [...]"
-                        }
+                            "name": "Dragonite Ore",
+                            "description": "Ore sourced from mining outcrops. A rare material coveted for its durability in armor crafting.",
+                            "value": 480,
+                            "carryLimit": 10,
+                            "recipes": []
+                        },
+                        "quantity": 2,
+                        "id": 1656
                     },
                     [...]
-                ]
-            }
+                ],
+                "zennyCost": 1500,
+                "id": 1
+            },
+            "id": 1
         },
         [...]
     ]
