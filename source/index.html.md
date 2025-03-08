@@ -45,6 +45,7 @@ meta:
   <ul>
     <li><a href="#armor-sets">Armor Sets</a></li>
     <li><a href="#armor">Armor</a></li>
+    <li><a href="#charms">Charms</a></li>
     <li><a href="#decorations">Decorations</a></li>
     <li><a href="#items">Items</a></li>
   </ul>
