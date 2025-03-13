@@ -127,7 +127,7 @@ curl "{{URL}}/en/armor"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/armor`
 
 ## Retrieve an armor
@@ -205,7 +205,7 @@ curl "{{URL}}/en/armor/1"
 
 This endpoint retrieves a single armor object by its ID.
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/en/armor/{id}`
 
 |Parameter|Type|Description|

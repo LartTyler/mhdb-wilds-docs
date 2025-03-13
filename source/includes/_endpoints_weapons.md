@@ -2,32 +2,117 @@
 
 # Weapons
 ## Properties
+```json
+{
+    "gameId": 26,
+    "crafting": {
+        "weapon": {
+            "id": 100
+        },
+        "craftable": false,
+        "previous": {
+            "name": "Uth Valeroje II",
+            "id": 99
+        },
+        "branches": [
+            {
+                "name": "Valeroje-of-the-Waves",
+                "id": 101
+            }
+        ],
+        "craftingMaterials": [],
+        "craftingZennyCost": 0,
+        "upgradeMaterials": [
+            {
+                "item": {
+                    "id": 291,
+                    "gameId": 327,
+                    "rarity": 5,
+                    "name": "Uth Duna Plate",
+                    "description": "A rare plate from an [...]",
+                    "value": 3600,
+                    "carryLimit": 99,
+                    "recipes": []
+                },
+                "quantity": 1,
+                "id": 2580
+            },
+            [...]
+        ],
+        "upgradeZennyCost": 14000,
+        "id": 100
+    },
+    "rarity": 7,
+    "kind": "charge-blade",
+    "damage": {
+        "raw": 220,
+        "display": 792
+    },
+    "specials": [
+        {
+            "element": "water",
+            "kind": "element",
+            "damage": {
+                "raw": 32,
+                "display": 320
+            },
+            "hidden": false,
+            "id": 50
+        }
+    ],
+    "name": "Uth Valeroje III",
+    "description": "An Uth Duna charge blade. A lovely [...]",
+    "defenseBonus": 0,
+    "elderseal": null,
+    "slots": [
+        3,
+        2
+    ],
+    "affinity": -15,
+    "skills": [
+        {
+            "skill": {
+                "id": 97,
+                "name": "Power Prolonger",
+                "description": "Allows long swords, dual [...]"
+            },
+            "level": 3,
+            "description": "Greatly boosts the duration weapons are powered up.",
+            "id": 251
+        }
+    ],
+    "id": 100,
+}
+```
+> An example `Weapon` object. Some fields have been truncated or removed to show only fields present on _all_ weapons.
+
 A [union type](#union-types), identified by the `kind` field.
 
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The weapon's ID|
-|kind|Discriminant<[WeaponKind](#weaponkind)>|The discriminant for the [tagged union](#union-types)|
+|gameId|[GameId](#gameid)|The ID used by the game files to identify the weapon; unique only for weapons with the same [`kind`](#weaponkind)|
+|kind|Discriminant<[WeaponKind](#weapon-types)>|The discriminant for the [tagged union](#union-types)|
 |name|String|The weapon's name|
 |rarity|Integer|The weapon's rarity|
-|damageKind|[DamageKind](#damagekind)|The type of damage the weapon deals|
 |damage|[WeaponDamage](#weapondamage)|An object describing the damage the weapon deals|
 |specials|Array<[WeaponSpecial](#weaponspecial)>|An array of objects describing element or status damage dealt by the weapon|
-|sharpness|Array<[Sharpness](#sharpness)>|An array of sharpness data at each level of handicraft; index 0 is base sharpness with no levels of handicraft applied|
-|skills|Array<[Skill](#skills)>|An array of skills granted by the weapon|
+|sharpness|[Sharpness](#sharpness)|The base sharpness of the weapon; **not present on bows or bowguns**|
+|handicraft|Array&lt;Integer>|An array of breakpoints for the Handicraft skill; see [Handicraft](#handicraft) for more information (not present on bows or bowguns)|
+|skills|Array<[SkillRanks](#skillranks)>|An array of skills granted by the weapon|
 |defenseBonus|Integer|Additional defense granted by the weapon|
 |elderseal|[Elderseal](#elderseal)|The elderseal strength of the weapon; `null` indicates the weapon does not apply elderseal|
-|affinity|Percent|The base affinity (critical hit chance) of the weapon|
+|affinity|Percent|The base affinity of the weapon; can be negative|
 |slots|Array<[DecorationSlot](#decorationslot)>|An array of decoration slots on the weapon|
 |crafting|[WeaponCrafting](#weaponcrafting)|Crafting information for the weapon|
 
-### WeaponDamage
+#### WeaponDamage
 |Property|Type|Description|
 |---|---|---|
 |raw|Integer|The raw (true) damage value|
 |display|Integer|The damage value displayed in-game|
 
-### WeaponSpecial
+#### WeaponSpecial
 A [union type](#union-types), identified by the `kind` field.
 
 |Property|Type|Description|
@@ -37,7 +122,7 @@ A [union type](#union-types), identified by the `kind` field.
 |hidden|Boolean|Indicates that this special must be activated by the Free Element/Ammo Up skill|
 |kind|Discriminant<[SpecialKind](#specialkind)>|The discriminant for the [tagged union](#union-types)|
 
-### SpecialKind
+#### SpecialKind
 The discriminant for the [WeaponSpecial](#weaponspecial) [tagged union](#union-types).
 
 |Value|Subtype|
@@ -45,12 +130,12 @@ The discriminant for the [WeaponSpecial](#weaponspecial) [tagged union](#union-t
 |element|[WeaponElement](#weaponelement)|
 |status|[WeaponStatus](#weaponstatus)|
 
-### WeaponElement
+#### WeaponElement
 |Property|Type|Description|
 |---|---|---|
 |element|[Element](#element)|The element dealt by the special attribute|
 
-### WeaponStatus
+#### WeaponStatus
 |Property|Type|Description|
 |---|---|---|
 |status|[Status](#status)|The status effect dealt by the special attribte|
@@ -98,6 +183,18 @@ In the above example, the resulting bar might look something like the one below.
     <div class="white" style="width: 7px"></div>
 </div>
 
+### Handicraft
+Each level of the Handicraft skill adds 10 hits to the weapon's sharpness. In some cases, hitting a certain level of
+Handicraft on a specific weapon will cause sharpness of the next color up to be added to instead. The API encodes this
+as an array where each element is the number of Handicraft levels before the weapon moves to the next sharpness color.
+The first element in the array indicates the number of levels that apply to the weapon's highest base sharpness
+segment, and each subsequent element in the array applies to segments after that.
+
+For example, the charge blade "Valeroje-of-the-Waves" has a `handicraft` of `[1, 4]`, and a base blue sharpness of 50.
+Adding one level of Handicraft would increase the blue sharpness to 60, and a second level of Handicraft would add 10
+hits of white sharpness. A third would add another 10 to the white sharpness bar, and so on until a total of 40 white
+sharpness at Handicraft 5.
+
 ### WeaponCrafting
 |Property|Type|Description|
 |---|---|---|
@@ -110,46 +207,68 @@ In the above example, the resulting bar might look something like the one below.
 |upgradeZennyCost|Integer|The amount of zenny required to upgrade the previous weapon into this one|
 |upgradeMaterials|Array<[CraftingCost](#craftingcost)>|An array of materials required to upgrade the previous weapon into this one|
 
-### WeaponKind
+## Weapon Types
 The discriminant for the [Weapon](#weapons) [tagged union](#union-types). Note that not all variants have additional fields; in
 such cases, no subtype will be listed in the table below.
 
-|Value|Subtype|
-|---|---|
-|bow|[Bow](#bow)|
-|chage-blade|[ChargeBlade](#chargeblade)|
-|dual-blades|—|
-|great-sword|—|
-|gunlance|[Gunlance](#gunlance)|
-|hammer|—|
-|heavy-bowgun|[HeavyBowgun](#heavybowgun)|
-|hunting-horn|[HuntingHorn](#huntinghorn)|
-|insect-glaive|—|
-|lance|—|
-|light-bowgun|[LightBowgun](#lightbowgun)|
-|long-sword|—|
-|switch-axe|—|
-|sword-shield|—|
+|Value|Subtype|<div style="display: inline-block; width: 40px;"></div>|Value|Subtype|
+|---|---|-|---|---|
+|bow|[Bow](#bow)||hunting-horn|[Hunting Horn](#hunting-horn)|
+|chage-blade|[Charge Blade](#charge-blade)||insect-glaive|[Insect Glaive](#insect-glaive)|
+|dual-blades|—||lance|—|
+|great-sword|—||light-bowgun|[Light Bowgun](#light-bowgun)|
+|gunlance|[Gunlance](#gunlance)||long-sword|—|
+|hammer|—||switch-axe|[Switch Axe](#switch-axe)|
+|heavy-bowgun|[Heavy Bowgun](#heavy-bowgun)||sword-shield|—|
 
 ### Bow
+```json
+{
+    "coatings": [
+        "power",
+        "paralysis"
+    ]
+}
+```
+> An example `Bow` object. Fields have been omitted to show only those added to `Bow` objects.
+
 |Property|Type|Description|
 |---|---|---|
 |coatings|Array<[BowCoating](#bowcoating)>|An array of coatings supported by the weapon|
 
-### BowCoating
+#### BowCoating
 An enumerated value, one of the following:
 
-||||
-|-|-|-|
-|close-range|power|paralysis|
-|poison|sleep|blast|
+|||||
+|-|-|-|-|
+|close-range|power|pierce|paralysis|
+|poison|sleep|blast|exhaust|
 
-### ChargeBlade
+### Charge Blade
+```json
+{
+    "phial": "impact",
+    "sharpness": {
+        "red": 50,
+        "orange": 60,
+        "yellow": 40,
+        "green": 50,
+        "blue": 0,
+        "white": 0,
+        "purple": 0
+    },
+    "handicraft": [
+        5
+    ]
+}
+```
+> An example `ChargeBlade` object. Fields have been omitted to show only those added to `ChargeBlade` objects.
+
 |Property|Type|Description|
 |---|---|---|
 |phial|[ChargeBladePhial](#chargebladephial)|The type of phial used by the weapon|
 
-### ChargeBladePhial
+#### ChargeBladePhial
 An enumerated value, one of the following:
 
 |||
@@ -157,103 +276,326 @@ An enumerated value, one of the following:
 |element|impact|
 
 ### Gunlance
+```json
+{
+    "shell": "normal",
+    "shellLevel": 2,
+    "sharpness": {
+        "red": 50,
+        "orange": 50,
+        "yellow": 40,
+        "green": 60,
+        "blue": 0,
+        "white": 0,
+        "purple": 0
+    },
+    "handicraft": [
+        5
+    ]
+}
+```
+> An example `Gunlance` object. Fields have been omitted to show only those added to `Gunlance` objects.
+
 |Property|Type|Description|
 |---|---|---|
 |shell|[GunlanceShell](#gunlanceshell)|The type of shell used by the weapon|
 |shellLevel|Integer|The level of the weapon's shell|
 
-### GunlanceShell
+#### GunlanceShell
 An enumerated value, one of the following:
 
 ||||
 |-|-|-|
 |normal|wide|long|
 
-### HeavyBowgun
+### Heavy Bowgun
+```json
+{
+    "ammo": [
+        {
+            "kind": "normal",
+            "level": 2,
+            "capacity": 4,
+            "id": 1
+        },
+        {
+            "kind": "pierce",
+            "level": 1,
+            "capacity": 5,
+            "id": 2
+        },
+        {
+            "kind": "spread",
+            "level": 1,
+            "capacity": 4,
+            "id": 3
+        },
+        [...]
+    ]
+}
+```
+> An example `HeavyBowgun` object. Fields have been omitted to show only those added to `Gunlance` objects. Additionally,
+> some fields have been truncated to preserve readability.
+
 |Property|Type|Description|
 |---|---|---|
-|deviation|[Deviation](#deviation)|The weapon's deviation (accuracy)|
-|specialAmmo|[BowgunSpecialAmmo](#bowgunspecialammo)|Special ammo available to the weapon|
-|ammo|Array<[Ammo](#ammo)>|An array of ammo and capacities for the weapon; ammo the weapon cannot use will not be included in the array|
-|autoReload|Array<[AutoReload](#autoreload)>|An array of objects indicating which ammo types support auto-reloading|
+|ammo|Array<[HeavyBowgunAmmo](#heavybowgunammo)>|An array of ammo and capacities for the weapon; ammo the weapon cannot use will not be included in the array|
 
-### Deviation
-An enumerated value, one of the following:
-
-||||
-|-|-|-|
-|none|low|average|
-|high|||
-
-### BowgunSpecialAmmo
-An enumerated value, one of the following:
-
-|||
-|-|-|
-|wyvernheart|wyvernsnipe|
-
-### Ammo
+#### HeavyBowgunAmmo
 |Property|Type|Description|
+|---|---|---|
 |kind|[AmmoKind](#ammokind)|The ammo type|
-|capacities|Array&ltInteger>|An array of ammo capacity at different ammo levels; index zero is level one|
+|level|Integer|The ammo level|
+|capacity|Integer|The number of shots before reloading|
 
-### AmmoKind
-An enumerated value, one of the following:
+### Hunting Horn
+```json
+{
+    "melody": {
+        "id": 5,
+        "gameId": 4,
+        "notes": [
+            "white",
+            "red",
+            "yellow"
+        ],
+        "songs": [
+            {
+                "effectId": 1,
+                "sequence": [
+                    "white",
+                    "white"
+                ],
+                "name": "Self-Improvement",
+                "id": 2
+            },
+            {
+                "effectId": 11,
+                "sequence": [
+                    "white",
+                    "red",
+                    "white"
+                ],
+                "name": "Attack Up (S)",
+                "id": 18
+            },
+            [...]
+        ]
+    },
+    "echoBubble": {
+        "kind": "evasion",
+        "name": "Evasion & Movement Speed Up",
+        "id": 1,
+        "gameId": 1
+    },
+    "echoWave": {
+        "id": 1,
+        "gameId": 1,
+        "kind": "blunt",
+        "name": "Echo Wave (Blunt)"
+    },
+    "sharpness": {
+        "red": 50,
+        "orange": 60,
+        "yellow": 50,
+        "green": 40,
+        "blue": 0,
+        "white": 0,
+        "purple": 0
+    },
+    "handicraft": [
+        5
+    ]
+}
+```
+> An example `HuntingHorn` object. Fields have been omitted to show only those added to `HuntingHorn` objects.
+> Additionally, some fields have been truncated to preserve readability.
 
-||||||
-|-|-|-|-|-|
-|normal|piercing|spread|sticky|cluster|
-|recover|poison|paralysis|sleep|exhaust|
-|flaming|water|freeze|thunder|dragon|
-|slicing|wyvern|demo|armor|tranq|
-
-### AutoReload
-|Property|Type|Description|
-|---|---|---|
-|ammo|[AmmoKind](#ammokind)|The ammo type|
-|level|Integer|The level at which the ammo supports auto-reloading|
-
-### HuntingHorn
 |Property|Type|Description|
 |---|---|---|
 |melody|[HuntingHornMelody](#huntinghornmelody)|The weapon's note and melody information|
+|echoBubble|[HuntingHornBubble](#huntinghornbubble)|The echo bubble used by the hunting horn|
+|echoWave|[HuntingHornWave](#huntinghornwave)|The echo wave used by the hunting horn; some horns do not have an echo wave|
 
-### HuntingHornMelody
+#### HuntingHornMelody
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The ID|
+|gameId|[GameId](#gameid)|The ID used by the game files to identify the melody (note set)|
 |notes|Array<[HuntingHornNote](#huntinghornnote)>|An array of notes used in the melody|
 |songs|Array<[HuntingHornSong](#huntinghornsong)>|An array of songs that can be played by the weapon|
 
-### HuntingHornNote
+#### HuntingHornNote
 An enumerated value, one of the following:
 
 |||||
 |-|-|-|-|
-|red|purple|blue|white|
-|yellow|green|aqua|
+|purple|red|orange|yellow|
+|green|blue|aqua|white|
 
-### HuntingHornSong
+#### HuntingHornSong
 |Property|Type|Description|
 |---|---|---|
-|sequence|Array&ltInteger>|An array of note indexes from the melody that make up the song, in the order they must be played|
-|duration|Integer|The number of seconds that the song lasts|
-|effects|String|A description of the effects granted by the song|
-|personal|Boolean|Indicates if the song applies only to the player; `false` indicates that it affects all nearby hunters|
+|id|Integer|The ID|
+|effectId|Integer|An identifier for the effect granted by the song; all songs that grant the same effect will share the same `effectId`|
+|sequence|Array<[HuntingHornNote](#huntinghornnote)>|An array of notes that make up the song, in the order they must be played|
+|name|String|The name of the song, e.g. "Attack Up (S)"|
 
-### LightBowgun
+Note that `effectId` is _not_ a unique identifier. Some songs can be played with different note combinations, and the
+API encodes that as multiple entries in the database for each note combination that share the same `effectId`.
+
+#### HuntingHornBubble
 |Property|Type|Description|
 |---|---|---|
-|deviation|[Deviation](#deviation)|The weapon's deviation (accuracy)|
-|ammo|Array<[Ammo](#ammo)>|An array of ammo and capacities for the weapon; ammo the weapon cannot use will not be included in the array|
-|autoReload|Array<[AutoReload](#autoreload)>|An array of objects indicating which ammo types support auto-reloading|
-|rapidFire|Array<[RapidFire](#rapidfire)>|An array of objects indicating which ammo types support rapid fire|
+|id|Integer|The ID|
+|gameId|[GameId](#gameid)|The ID used by the game files to identify the echo bubble|
+|kind|[HuntingHornBubbleKind](#huntinghornbubblekind)|The type of effect granted by the echo bubble|
+|name|String|The name of the echo bubble effect|
 
-### RapidFire
+#### HuntingHornBubbleKind
+An enumerated value, one of the following:
+
+|Value|In-Game Name (English)|<div style="display: inline-block; width: 40px;"></div>|Value|In-Game Name (English)|
+|---|---|-|---|---|
+|evasion|Evasion & Movement Speed Up||damage|Attack & Affinity Up|
+|regen|Health Regeneration||defense|Defense & Elemental Res Up|
+|stamina|Stamina Regeneration||immunity|Ailments/Blights Negated|
+
+#### HuntingHornWave
 |Property|Type|Description|
 |---|---|---|
-|kind|[AmmoKind](#ammokind)|The type of ammo|
-|level|Integer|The level at which the ammo supports rapid fire|
+|id|Integer|The ID|
+|gameId|[GameId](#gameid)|The ID used by the game files to identify the echo wave|
+|kind|[HuntingHornWaveKind](#huntinghornwavekind)|The type of effect granted by the echo wave|
+|name|String|The name of the echo wave effect|
+
+#### HuntingHornWaveKind
+An enumerated value, one of the following:
+
+|||||
+|-|-|-|-|
+|blunt|slash|fire|water|
+|thunder|ice|dragon|poison|
+|paralyze|sleep|blast||
+
+### Insect Glaive
+```json
+{
+    "kinsectLevel": 1,
+    "sharpness": {
+        "red": 50,
+        "orange": 50,
+        "yellow": 40,
+        "green": 60,
+        "blue": 0,
+        "white": 0,
+        "purple": 0
+    },
+    "handicraft": [
+        5
+    ]
+}
+```
+> An example `InsectGlaive` object. Fields have been omitted to show only those added to `InsectGlaive` objects.
+
+|Property|Type|Description|
+|---|---|---|
+|kinsectLevel|Integer|The kinsect level modifier for the weapon|
+
+### Light Bowgun
+```json
+{
+    "ammo": [
+        {
+            "kind": "normal",
+            "level": 2,
+            "capacity": 4,
+            "rapid": true,
+            "id": 1
+        },
+        {
+            "kind": "pierce",
+            "level": 1,
+            "capacity": 4,
+            "rapid": false,
+            "id": 2
+        },
+        [...]
+    ],
+    "specialAmmo": "wyvernblast",
+}
+```
+> An example `LightBowgun` object. Fields have been omitted to show only those added to `LightBowgun` objects.
+> Additionally, some fields have been truncated to preserve readability.
+
+|Property|Type|Description|
+|---|---|---|
+|ammo|Array<[LightBowgunAmmo](#lightbowgunammo)>|An array of ammo and capacities for the weapon; ammo the weapon cannot use will not be included in the array|
+|specialAmmo|[LightBowgunSpecialAmmo](#lightbowgunspecialammo)|Indicates the type of special ammo available to the weapon|
+
+#### LightBowgunAmmo
+|Property|Type|Description|
+|---|---|---|
+|kind|[AmmoKind](#ammokind)|The ammo type|
+|level|Integer|The ammo level|
+|capacity|Integer|The number of shots before reloading|
+|rapid|Boolean|Indicates if the ammo has the "Rapid Fire" modifier|
+
+#### LightBowgunSpecialAmmo
+An enumerated value, one of the following:
+
+|||
+|-|-|
+|wyvernblast|adhesive|
+
+### Switch Axe
+```json
+{
+    "phial": {
+        "kind": "dragon",
+        "damage": {
+            "raw": 12,
+            "display": 120
+        }
+    },
+    "sharpness": {
+        "red": 80,
+        "orange": 40,
+        "yellow": 60,
+        "green": 80,
+        "blue": 70,
+        "white": 20,
+        "purple": 0
+    },
+    "handicraft": [
+        5
+    ]
+}
+```
+> An example `SwitchAxe` object. Fields have been omitted to show only those added to `SwitchAxe` objects.
+
+|Property|Type|Description|
+|---|---|---|
+|phial|[Phial](#phial)|The phial used by the weapon|
+
+Note that, while the field name in the API is `phial`, due to database limitations the field is actually named
+`switchAxePhial` (otherwise it would conflict with the charge blade's `phial` field). This is only relevant if you try
+to [query for the field](#searching-the-api); if you do, you will need to use the `switchAxePhial` field name instead of
+the one in the API response.
+
+#### Phial
+|Property|Type|Description|
+|---|---|---|
+|kind|[SwitchAxePhial](#switchaxephial)|The phial's type|
+|damage|[WeaponDamage](#weapondamage)|The damage dealt by the phial; **not present for `power` and `element` types**|
+
+#### SwitchAxePhial
+An enumerated value, one of the following:
+
+||||
+|-|-|-|
+|power|element|dragon|
+|exhaust|paralyze|poison|
 
 ## List all weapons
 ```shell
@@ -265,59 +607,94 @@ curl "{{URL}}/en/weapons"
 ```json
 [
     {
-        "id": 1,
-        "kind": "great-sword",
-        "rarity": 1,
-        "damage": {
-            "display": 384,
-            "raw": 80
-        },
-        "elderseal": null,
-        "damageKind": "sever",
-        "name": "Buster Sword 1",
-        "sharpness": [
-            {
-                "red": 100,
-                "orange": 50,
-                "yellow": 50,
-                "green": 0,
-                "blue": 0,
-                "white": 0,
-                "purple": 0
-            },
-            [...]
-        ],
-        "skills": [],
-        "defenseBonus": 0,
-        "affinity": 0,
-        "slots": [],
-        "elements": [],
+        "gameId": 2,
         "crafting": {
-            "craftable": true,
-            "previous": null,
+            "weapon": {
+                "id": 148
+            },
+            "craftable": false,
+            "previous": {
+                "name": "Hope Daggers I",
+                "id": 147
+            },
             "branches": [
                 {
-                    "id": 2,
-                    "name": "Buster Sword 2"
+                    "name": "Hope Daggers III",
+                    "id": 149
                 }
             ],
-            "craftingZennyCost": 100,
-            "craftingMaterials": [...],
-            "upgradeZennyCost": 0,
-            "upgradeMaterials": []
-        }
-    }
+            "craftingMaterials": [],
+            "craftingZennyCost": 0,
+            "upgradeMaterials": [
+                {
+                    "item": {
+                        "id": 51,
+                        "gameId": 53,
+                        "rarity": 4,
+                        "name": "Iron Ore",
+                        "description": "Ore that can be smelted into a multi-purpose metal.",
+                        "value": 60,
+                        "carryLimit": 10,
+                        "recipes": []
+                    },
+                    "quantity": 2,
+                    "id": 2745
+                }
+            ],
+            "upgradeZennyCost": 500,
+            "id": 148
+        },
+        "rarity": 1,
+        "kind": "dual-blades",
+        "damage": {
+            "raw": 100,
+            "display": 140
+        },
+        "specials": [],
+        "name": "Hope Daggers II",
+        "description": "Dual blades made specifically for [...]",
+        "defenseBonus": 0,
+        "elderseal": null,
+        "slots": [],
+        "affinity": 0,
+        "skills": [
+            {
+                "skill": {
+                    "id": 119,
+                    "name": "Speed Sharpening",
+                    "description": "Speeds up weapon sharpening when using a whetstone."
+                },
+                "level": 1,
+                "description": "Removes one cycle from the sharpening process.",
+                "id": 318
+            }
+        ],
+        "id": 148,
+        "sharpness": {
+            "red": 40,
+            "orange": 40,
+            "yellow": 40,
+            "green": 80,
+            "blue": 0,
+            "white": 0,
+            "purple": 0
+        },
+        "handicraft": [
+            5
+        ]
+    },
+    [...]
 ]
 ```
 
 This is a list endpoint, and supports [filtering](#filterin-objects-in-the-response).
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/weapons`
 
 ## List all weapons by type
 ```shell
-curl -G "{{URL}}/en/weapons" --data-urlencode 'q={"kind": "great-sword"}'
+curl -G "{{URL}}/en/weapons" --data-urlencode 'q={"kind": "dual-blades"}'
 ```
 
 > Returns an array of [Weapon] objects that are all Great Swords.
@@ -325,54 +702,89 @@ curl -G "{{URL}}/en/weapons" --data-urlencode 'q={"kind": "great-sword"}'
 ```json
 [
     {
-        "id": 1,
-        "kind": "great-sword",
-        "rarity": 1,
-        "damage": {
-            "display": 384,
-            "raw": 80
-        },
-        "elderseal": null,
-        "damageKind": "sever",
-        "name": "Buster Sword 1",
-        "sharpness": [
-            {
-                "red": 100,
-                "orange": 50,
-                "yellow": 50,
-                "green": 0,
-                "blue": 0,
-                "white": 0,
-                "purple": 0
-            },
-            [...]
-        ],
-        "skills": [],
-        "defenseBonus": 0,
-        "affinity": 0,
-        "slots": [],
-        "elements": [],
+        "gameId": 2,
         "crafting": {
-            "craftable": true,
-            "previous": null,
+            "weapon": {
+                "id": 148
+            },
+            "craftable": false,
+            "previous": {
+                "name": "Hope Daggers I",
+                "id": 147
+            },
             "branches": [
                 {
-                    "id": 2,
-                    "name": "Buster Sword 2"
+                    "name": "Hope Daggers III",
+                    "id": 149
                 }
             ],
-            "craftingZennyCost": 100,
-            "craftingMaterials": [...],
-            "upgradeZennyCost": 0,
-            "upgradeMaterials": []
-        }
-    }
+            "craftingMaterials": [],
+            "craftingZennyCost": 0,
+            "upgradeMaterials": [
+                {
+                    "item": {
+                        "id": 51,
+                        "gameId": 53,
+                        "rarity": 4,
+                        "name": "Iron Ore",
+                        "description": "Ore that can be smelted into a multi-purpose metal.",
+                        "value": 60,
+                        "carryLimit": 10,
+                        "recipes": []
+                    },
+                    "quantity": 2,
+                    "id": 2745
+                }
+            ],
+            "upgradeZennyCost": 500,
+            "id": 148
+        },
+        "rarity": 1,
+        "kind": "dual-blades",
+        "damage": {
+            "raw": 100,
+            "display": 140
+        },
+        "specials": [],
+        "name": "Hope Daggers II",
+        "description": "Dual blades made specifically for [...]",
+        "defenseBonus": 0,
+        "elderseal": null,
+        "slots": [],
+        "affinity": 0,
+        "skills": [
+            {
+                "skill": {
+                    "id": 119,
+                    "name": "Speed Sharpening",
+                    "description": "Speeds up weapon sharpening when using a whetstone."
+                },
+                "level": 1,
+                "description": "Removes one cycle from the sharpening process.",
+                "id": 318
+            }
+        ],
+        "id": 148,
+        "sharpness": {
+            "red": 40,
+            "orange": 40,
+            "yellow": 40,
+            "green": 80,
+            "blue": 0,
+            "white": 0,
+            "purple": 0
+        },
+        "handicraft": [
+            5
+        ]
+    },
+    [...]
 ]
 ```
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/weapons?q={"kind": "{kind}"}`
 
 |Parameter|Type|Description|
@@ -389,53 +801,87 @@ curl "{{URL}}/en/weapons/1"
 
 ```json
 {
-    "id": 1,
-    "kind": "great-sword",
-    "rarity": 1,
-    "damage": {
-        "display": 384,
-        "raw": 80
-    },
-    "elderseal": null,
-    "damageKind": "sever",
-    "name": "Buster Sword 1",
-    "sharpness": [
-        {
-            "red": 100,
-            "orange": 50,
-            "yellow": 50,
-            "green": 0,
-            "blue": 0,
-            "white": 0,
-            "purple": 0
-        },
-        [...]
-    ],
-    "skills": [],
-    "defenseBonus": 0,
-    "affinity": 0,
-    "slots": [],
-    "elements": [],
+    "gameId": 2,
     "crafting": {
-        "craftable": true,
-        "previous": null,
+        "weapon": {
+            "id": 148
+        },
+        "craftable": false,
+        "previous": {
+            "name": "Hope Daggers I",
+            "id": 147
+        },
         "branches": [
             {
-                "id": 2,
-                "name": "Buster Sword 2"
+                "name": "Hope Daggers III",
+                "id": 149
             }
         ],
-        "craftingZennyCost": 100,
-        "craftingMaterials": [...],
-        "upgradeZennyCost": 0,
-        "upgradeMaterials": []
-    }
+        "craftingMaterials": [],
+        "craftingZennyCost": 0,
+        "upgradeMaterials": [
+            {
+                "item": {
+                    "id": 51,
+                    "gameId": 53,
+                    "rarity": 4,
+                    "name": "Iron Ore",
+                    "description": "Ore that can be smelted into a multi-purpose metal.",
+                    "value": 60,
+                    "carryLimit": 10,
+                    "recipes": []
+                },
+                "quantity": 2,
+                "id": 2745
+            }
+        ],
+        "upgradeZennyCost": 500,
+        "id": 148
+    },
+    "rarity": 1,
+    "kind": "dual-blades",
+    "damage": {
+        "raw": 100,
+        "display": 140
+    },
+    "specials": [],
+    "name": "Hope Daggers II",
+    "description": "Dual blades made specifically for [...]",
+    "defenseBonus": 0,
+    "elderseal": null,
+    "slots": [],
+    "affinity": 0,
+    "skills": [
+        {
+            "skill": {
+                "id": 119,
+                "name": "Speed Sharpening",
+                "description": "Speeds up weapon sharpening when using a whetstone."
+            },
+            "level": 1,
+            "description": "Removes one cycle from the sharpening process.",
+            "id": 318
+        }
+    ],
+    "id": 148,
+    "sharpness": {
+        "red": 40,
+        "orange": 40,
+        "yellow": 40,
+        "green": 80,
+        "blue": 0,
+        "white": 0,
+        "purple": 0
+    },
+    "handicraft": [
+        5
+    ]
 }
 ```
 
 Retrieves a single weapon by its ID.
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/weapons/{id}`
 
 |Parameter|Type|Description|

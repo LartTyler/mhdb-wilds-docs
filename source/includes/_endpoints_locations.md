@@ -43,7 +43,7 @@ curl "{{URL}}/en/locations"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/locations`
 
 ## Retrieve a location
@@ -69,7 +69,7 @@ curl "{{URL}}/en/locations/1"
 }
 ```
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/locations/{id}`
 
 |Parameter|Type|Description|

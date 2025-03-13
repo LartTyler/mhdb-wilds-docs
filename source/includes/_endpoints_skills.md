@@ -57,7 +57,7 @@ curl "{{URL}}/en/skills"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/skills`
 
 ## Retrieve a skill
@@ -86,7 +86,7 @@ curl "{{URL}}/en/skills/1"
 }
 ```
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/skills/{id}`
 
 |Parameter|Type|Description|

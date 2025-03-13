@@ -3,7 +3,6 @@ title: "Monster Hunter: {{TITLE}} API Reference"
 
 language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers
   - shell: cURL
-  - javascript
 
 toc_footers:
   - <a href="https://github.com/LartTyler/mhdb-{{ID}}">Visit the project on Github</a>

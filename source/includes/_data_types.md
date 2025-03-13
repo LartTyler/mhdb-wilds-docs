@@ -29,7 +29,8 @@ Included here are data types shared across several parts of the API.
 The game ID type represents an identifier derived from the game files. This value is a 32-bit signed integer, and will
 _always_ be stable across updates and imports. Due to the way the API is constructed, an object may change its `id`
 field after an import, but objects with a `gameId` field will always use the same value, even if the database were to
-be wiped out and rebuilt.
+be wiped out and rebuilt. Game IDs are always unique identifiers within that object category, however some
+[union types](#union-types) (such as weapons) will share game IDs for different [`WeaponKind`](#weaponkinds)s.
 
 If you need long-term persistent storage for an object reference for your application, you should use the object's
 game ID if it has one, or the game ID of the nearest parent with one and some unique identifier on the object itself,
@@ -92,6 +93,16 @@ elements in the array.
     "slots": [1, 2]
 }
 ```
+
+### AmmoKind
+An enumerated value, one of the following:
+
+||||||
+|-|-|-|-|-|
+|normal|pierce|spread|slicing|sticky|
+|cluster|wyvern|poison|paralysis|sleep|
+|flaming|water|freeze|thunder|dragon|
+|recover|demon|armor|exhaust|tranq|
 
 ## CraftingCost
 |Property|Type|Description|

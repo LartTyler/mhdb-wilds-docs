@@ -61,7 +61,7 @@ curl "{{URL}}/en/ailments"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-#### HTTP Request
+###### HTTP Request
 `GET {{URL}}/{locale}/ailments`
 
 ## Retrieve an ailment
@@ -97,7 +97,7 @@ curl "{{URL}}/en/ailments/1"
 
 This endpoint retrieves a single ailment by its ID.
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/en/ailments/<id>`
 
 |Parameter|Type|Description|

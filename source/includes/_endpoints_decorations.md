@@ -49,7 +49,7 @@ curl "{{URL}}/en/decorations"
 
 This is a list endpoint, and supports [filtering](#filtering-objects-in-the-response).
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/decorations`
 
 ## Retrieve a decoration
@@ -85,7 +85,7 @@ curl "{{URL}}/en/decorations/1"
 
 Retrieves a decoration by its ID.
 
-#### HTTP Request
+##### HTTP Request
 `GET {{URL}}/{locale}/decorations/{id}`
 
 |Parameter|Type|Description|
