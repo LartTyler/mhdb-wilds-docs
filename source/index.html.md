@@ -7,6 +7,7 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
 toc_footers:
   - <a href="https://github.com/LartTyler/mhdb-{{ID}}">Visit the project on Github</a>
   - <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>
+  - <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support us on Ko-fi', '#72a4f2', 'E1E41BOLDX');kofiwidget2.draw();</script> 
 
 includes:
   - endpoints_ailments
@@ -42,11 +43,12 @@ meta:
 
   Currently, the following objects have been fully populated into the API:<br>
   <ul>
-    <li><a href="#armor-sets">Armor Sets</a></li>
     <li><a href="#armor">Armor</a></li>
+    <li><a href="#armor-sets">Armor Sets</a></li>
     <li><a href="#charms">Charms</a></li>
     <li><a href="#decorations">Decorations</a></li>
     <li><a href="#items">Items</a></li>
+    <li><a href="#weapons">Weapons</a></li>
   </ul>
 
   Want to help get more data into the API? <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>! Deciphering the
