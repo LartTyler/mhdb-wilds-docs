@@ -50,6 +50,23 @@ A 3D coordinate for an object in the game world.
 |y|Float|
 |z|Float|
 
+## Enum-like
+An "enum-like" value is a value that is technically enumerated on the backend, but should probably not be treated that
+way in code that uses the API. The best example of this is monster parts: technically, the game does have an enum
+for every monster part in the game, and many that are for monsters that are not yet implemented. If you're curious,
+the data merger does have that
+[represented as an enum](https://github.com/LartTyler/mhdb-wilds-data/blob/ec9986f49350aaf6babcd3b0ddc8c6f889627888/tools/merger/src/processor/monsters.rs#L1033-L1145).
+
+As you can see, that enum is incredibly long, and maybe only half of the variants are used (at the time of writing). As
+a rule of thumb, an Enum-like value should be treated like you would a normal enum variant, but you should operate under
+the assumption that new variants could be added at any time, possibly without notice. Most of the time, an enum-like
+will be accompanied by another value that provides a useful description for the thing represented by the enum-like
+value. Using monster parts as the example again, the [`Monster.breakableParts`](#monsters) array contains a list of the
+parts referenced by the enum-like value, and includes the localized version of that part's name.
+
+Enum-like values will be used very sparingly across this API, and will only appear in cases where limiting a value to a
+small number of possible variants is not feasible or does not make sense.
+
 ## Rank
 An enumerated value, one of the following:
 
@@ -71,6 +88,13 @@ An enumerated value, one of the following:
 |||||
 |-|-|-|-|
 |poison|sleep|paralysis|stun|
+
+## Effect
+An enumerated value, one of the following:
+||||
+|-|-|-|
+|noise|flash|stun|
+|exhaust|||
 
 ## DamageKind
 An enumerated value, one of the following:
