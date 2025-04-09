@@ -214,7 +214,7 @@ such cases, no subtype will be listed in the table below.
 |Value|Subtype|<div style="display: inline-block; width: 40px;"></div>|Value|Subtype|
 |---|---|-|---|---|
 |bow|[Bow](#bow)||hunting-horn|[Hunting Horn](#hunting-horn)|
-|chage-blade|[Charge Blade](#charge-blade)||insect-glaive|[Insect Glaive](#insect-glaive)|
+|charge-blade|[Charge Blade](#charge-blade)||insect-glaive|[Insect Glaive](#insect-glaive)|
 |dual-blades|—||lance|—|
 |great-sword|—||light-bowgun|[Light Bowgun](#light-bowgun)|
 |gunlance|[Gunlance](#gunlance)||long-sword|—|
