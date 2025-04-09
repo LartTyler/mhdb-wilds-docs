@@ -6,7 +6,7 @@
 |---|---|---|
 |id|Integer|The skill's ID|
 |name|String|The skill's name|
-|description|String|The skill's description|
+|description|String|The skill's description; will be `null` for set and group bonus skills|
 |ranks|Array<[SkillRank](#skillrank)>|An array of possible levels for the skill|
 |kind|[SkillKind](#skillkind)|Where a skill can be found|
 
@@ -24,6 +24,7 @@ An enumerated value, one of the following:
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The skill rank's ID|
+|name|String|The rank's name; always `null` except for on set and group bonus skills|
 |description|String|The rank's description|
 |level|Integer|The skill level of the rank|
 
