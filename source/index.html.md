@@ -48,7 +48,10 @@ meta:
     <li><a href="#charms">Charms</a></li>
     <li><a href="#decorations">Decorations</a></li>
     <li><a href="#items">Items</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#weapons">Weapons</a></li>
+    <li><a href="#monsters">Monsters</a></li>
+    <li><a href="#locations">Locations</a></li>
   </ul>
 
   Want to help get more data into the API? <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>! Deciphering the
