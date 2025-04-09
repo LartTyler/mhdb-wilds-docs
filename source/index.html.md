@@ -106,6 +106,41 @@ Additionally, you can optimize your application further by implementing local ca
 [`If-Modified-Since`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Modified-Since) HTTP header; the
 server will respond with a `304 Not Modified` response if your locally cached data is up-to-date.
 
+### Stub Objects
+```json
+{
+    "name": "Dragon Resistance",
+    "kind": "armor",
+    "description": "Increases dragon resistance. Also improves defense at higher levels.",
+    "ranks": [
+        {
+            "skill": {
+                "id": 1
+            },
+            "level": 1,
+            "description": "Dragon resistance +6",
+            "id": 1
+        },
+        [...]
+    ],
+    "id": 1,
+    "gameId": -2125233152
+}
+```
+
+You may notice that the API sometimes returns fields that are not included in this document. In most cases, these are
+"stub objects", references to a parent object that is included to make it easier to work with the API, but can probably
+be ignored in many cases. For example, consider the response on the right from the `/skills` endpoint.
+
+In the first entry of the `ranks` array, there is a `skill` field, which contains only an ID. This will always match
+the ID of the `Skill` that owns the `SkillRank`, and will be present on all instances of `SkillRank`. This could be
+useful if your application passes a `SkillRank` entry to a function that still needs to know the ID of the skill it
+belongs to. In other cases, child objects may not have their own unique IDs, and the parent's ID may be used instead.
+
+Any object that is a child of another object will have this stub version of its parent. In most cases, only the parent's
+ID will be included, but in certain special cases more information may also be included, such as the parent's name
+field.
+
 ## Reading this document
 All example URLs use the `en` locale (e.g. "{{URL}}/**en**/items"), but your application can use any valid language code.
 
