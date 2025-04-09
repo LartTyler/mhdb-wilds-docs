@@ -6,6 +6,7 @@ Included here are data types shared across several parts of the API.
 {
     "String": "This is a string.",
     "Integer": 123,
+    "Float": 12.34,
     "Boolean": true,
     "Percent": "48",
     "Enum<Element>": "fire",
@@ -18,6 +19,7 @@ Included here are data types shared across several parts of the API.
 |---|---|
 |String|Text of any length; fields with this type are localized, and may be `null` if a value has not been set for your selected locale.|
 |Integer|A whole number.|
+|Float|A floating-point number.|
 |Boolean|A boolean value, either `true` or `false`.|
 |Percent|An integer indicating a percentage; usually between 0 and 100 inclusive, but some objects (such as motion values) can have values higher than 100%|
 |Enum&lt;T>|An enumerated value, restricted to the values specified.|
@@ -38,6 +40,15 @@ such as:
 
 - For [Armor](#armor), store the `gameId` from the [Armor Set](#armor-sets) and the `kind` from the armor.
 - For [SkillRanks](#skillrank), store the `gameId` from the [Skill](#skills) and the `level` from the skill rank.
+
+## Position
+A 3D coordinate for an object in the game world.
+
+|Property|Type|
+|---|---|
+|x|Float|
+|y|Float|
+|z|Float|
 
 ## Rank
 An enumerated value, one of the following:
