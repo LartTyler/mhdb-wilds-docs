@@ -3,7 +3,7 @@ Static documentation generator, forked from [`slatedocs/slate`](https://github.c
 Some adjustments have been made to better fit the projects needs.
 
 ## Header linking and nesting
-Headers will nest in the table of contents up to H3 (based on the guide found
+Headers will nest in the table of contents up to H4 (based on the guide found
 [here](https://github.com/slatedocs/slate/wiki/Deeper-Nesting#static-table-of-contents)).
 
 Additionally, the `NestingUniqueHeadCounter` renderer provided by Slate is being used, with some minor tweaks.
