@@ -4,19 +4,19 @@
 ## Properties
 ```json
 {
-    "gameId": 26,
+    "gameId": 22,
     "crafting": {
         "weapon": {
             "id": 100
         },
         "craftable": false,
         "previous": {
-            "name": "Uth Valeroje II",
+            "name": "Barina Bouclier III",
             "id": 99
         },
         "branches": [
             {
-                "name": "Valeroje-of-the-Waves",
+                "name": "Lala Eumenophor",
                 "id": 101
             }
         ],
@@ -25,63 +25,72 @@
         "upgradeMaterials": [
             {
                 "item": {
-                    "id": 291,
-                    "gameId": 327,
-                    "rarity": 5,
-                    "name": "Uth Duna Plate",
-                    "description": "A rare plate from an [...]",
-                    "value": 3600,
+                    "id": 273,
+                    "gameId": 306,
+                    "rarity": 6,
+                    "name": "Lala Barina Floret+",
+                    "description": "High-quality hair from a Lala [...]",
+                    "value": 900,
                     "carryLimit": 99,
                     "recipes": []
                 },
-                "quantity": 1,
-                "id": 2580
+                "quantity": 6,
+                "id": 9883
             },
             [...]
         ],
         "upgradeZennyCost": 14000,
+        "column": 7,
+        "row": 13,
         "id": 100
     },
     "rarity": 7,
     "kind": "charge-blade",
     "damage": {
-        "raw": 220,
-        "display": 792
+        "raw": 180,
+        "display": 648
     },
     "specials": [
         {
-            "element": "water",
-            "kind": "element",
+            "status": "paralysis",
+            "kind": "status",
             "damage": {
-                "raw": 32,
-                "display": 320
+                "raw": 21,
+                "display": 210
             },
             "hidden": false,
-            "id": 50
+            "id": 1384
         }
     ],
-    "name": "Uth Valeroje III",
-    "description": "An Uth Duna charge blade. A lovely [...]",
+    "name": "Barina Bouclier IV",
+    "description": "A Lala Barina charge blade rigged with its fibers. Its [...]",
     "defenseBonus": 0,
     "elderseal": null,
     "slots": [
         3,
         2
     ],
-    "affinity": -15,
+    "affinity": 15,
     "skills": [
         {
             "skill": {
-                "id": 97,
-                "name": "Power Prolonger",
-                "description": "Allows long swords, dual [...]"
+                "id": 68,
+                "name": "Critical Status",
+                "description": "Increases abnormal status [...]"
             },
-            "level": 3,
-            "description": "Greatly boosts the duration weapons are powered up.",
-            "id": 251
-        }
+            "level": 1,
+            "name": null,
+            "description": "Slightly increases abnormal status [...]",
+            "id": 166
+        },
+        [...]
     ],
-    "id": 100,
+    "series": {
+        "id": 9,
+        "gameId": -1246963200,
+        "name": "Lala Barina Tree"
+    },
+    "id": 100
 }
 ```
 > An example `Weapon` object. Some fields have been truncated or removed to show only fields present on _all_ weapons.
@@ -105,6 +114,13 @@ A [union type](#union-types), identified by the `kind` field.
 |affinity|Percent|The base affinity of the weapon; can be negative|
 |slots|Array<[DecorationSlot](#decorationslot)>|An array of decoration slots on the weapon|
 |crafting|[WeaponCrafting](#weaponcrafting)|Crafting information for the weapon|
+|series|[WeaponSeries](#weaponseries)|Which crafting series the weapon belongs to; `null` if it does not belong to a series (e.g. Artian weapons)|
+
+#### WeaponSeries
+|Property|Type|Description|
+|---|---|---|
+|id|Integer|The ID of the series|
+|gameId|[GameId](#gameid)|The ID used by the game files to identify the series|
 
 #### WeaponDamage
 |Property|Type|Description|
@@ -206,6 +222,8 @@ sharpness at Handicraft 5.
 |craftingMaterials|Array<[CraftingCost](#craftingcost)>|An array of materials required to craft the weapon|
 |upgradeZennyCost|Integer|The amount of zenny required to upgrade the previous weapon into this one|
 |upgradeMaterials|Array<[CraftingCost](#craftingcost)>|An array of materials required to upgrade the previous weapon into this one|
+|row|Integer|Which row of the crafting tree the weapon can be found in|
+|column|Integer|Which column of the crafting tree the weapon can be found in|
 
 ## Weapon Types
 The discriminant for the [Weapon](#weapons) [tagged union](#union-types). Note that not all variants have additional fields; in
