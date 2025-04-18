@@ -9,6 +9,7 @@
 |description|String|The skill's description; will be `null` for set and group bonus skills|
 |ranks|Array<[SkillRank](#skillrank)>|An array of possible levels for the skill|
 |kind|[SkillKind](#skillkind)|Where a skill can be found|
+|icon|[SkillIcon](#skillicon)|Icon information|
 
 ### SkillKind
 An enumerated value, one of the following:
@@ -19,6 +20,22 @@ An enumerated value, one of the following:
 |weapon|Skill can be found on weapons|
 |set|Skill can be found in armor set bonuses|
 |group|Skill can be found in armor group bonuses|
+
+### SkillIcon
+|Property|Type|Description|
+|---|---|---|
+|id|[GameId](#gameid)|The ID used by the game files to identify the icon|
+|kind|[SkillIconKind](#skilliconkind)|The string representation of the icon; will be used in the future to identify asset files|
+
+### SkillIconKind
+An enumerated value, one of the following:
+
+|||||  
+|---|---|---|---|  
+|affinity|attack|defense|element|  
+|gathering|group|handicraft|health|  
+|item|offense|ranged|set|  
+|stamina|utility|||
 
 ### SkillRank
 |Property|Type|Description|
@@ -38,20 +55,27 @@ curl "{{URL}}/en/skills"
 ```json
 [
     {
-        "id": 1,
-        "name": "Poison Resistance",
-        "description": "Reduces damage while poisoned.",
+        "name": "Dragon Resistance",
+        "kind": "armor",
+        "description": "Increases dragon resistance. Also improves [...]",
         "ranks": [
             {
-                "id": 1,
                 "skill": {
                     "id": 1
                 },
                 "level": 1,
-                "description": "Reduces the number of times you take poison damage.",
+                "name": null,
+                "description": "Dragon resistance +6",
+                "id": 1
             },
             [...]
-        ]
+        ],
+        "icon": {
+            "id": 6,
+            "kind": "defense"
+        },
+        "id": 1,
+        "gameId": -2125233152
     }
 ]
 ```
@@ -70,20 +94,27 @@ curl "{{URL}}/en/skills/1"
 
 ```json
 {
-    "id": 1,
-    "name": "Poison Resistance",
-    "description": "Reduces damage while poisoned.",
+    "name": "Dragon Resistance",
+    "kind": "armor",
+    "description": "Increases dragon resistance. Also improves [...]",
     "ranks": [
         {
-            "id": 1,
             "skill": {
                 "id": 1
             },
             "level": 1,
-            "description": "Reduces the number of times you take poison damage.",
+            "name": null,
+            "description": "Dragon resistance +6",
+            "id": 1
         },
         [...]
-    ]
+    ],
+    "icon": {
+        "id": 6,
+        "kind": "defense"
+    },
+    "id": 1,
+    "gameId": -2125233152
 }
 ```
 

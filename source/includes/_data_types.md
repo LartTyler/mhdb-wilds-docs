@@ -118,6 +118,18 @@ An enumerated value, one of the following:
 |-|-|
 |weapon|armor|
 
+## Color
+An enumerated value, one of the following:
+
+|||||
+|-|-|-|-|
+|white|gray|rose|pink|
+|red|vermilion|orange|brown|
+|ivory|yellow|lemon|sage-green|
+|moss-green|green|emerald|sky|
+|blue|ultramarine|blue-purple|purple|
+|dark-purple||||
+
 ## DecorationSlot
 Decoration slots are represented by a positive integer indicating the max level of decoration that the slot will accept.
 Usually, these levels are provided as an array, with the number of slots on the item indicated by the number of

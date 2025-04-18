@@ -146,3 +146,23 @@ All example URLs use the `en` locale (e.g. "{{URL}}/**en**/items"), but your app
 
 Some examples have their properties truncated to save space. Any time you see "[...]", this indicates that the example
 has been truncated, but there would normally be much more data present in the response.
+
+## Versioning
+```json
+{
+  "version": "2025-04-18T03:29:46+00:00"
+}
+```
+> A sample `Version` response.
+
+The API provides a `/version` endpoint that responds with the timestamp that the importers last ran. This, effectively,
+serves as a "version" for the API: as long as your cached data is newer than the timestamp, your local data is
+up-to-date. If it is not, some or all of your local data may be out of sync.
+
+This can be used for long-term storage of cached data, separate from the [caching behavior](#caching) that is
+implemented for the entire API through Cloudflare.
+
+##### HTTP Request
+`GET {{URL}}/version`
+
+Note that unlike other endpoints in the API, this endpoint does not support a `{{locale}}` parameter.
