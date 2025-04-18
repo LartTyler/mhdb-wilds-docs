@@ -338,6 +338,9 @@
                   <li>
                     <a href="#reading-this-document" class="toc-h2 toc-link" data-title="Reading this document">Reading this document</a>
                   </li>
+                  <li>
+                    <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -456,6 +459,12 @@
                       <ul class="toc-list-h3">
                           <li>
                             <a href="#itemrecipe" class="toc-h3 toc-link" data-title="ItemRecipe">ItemRecipe</a>
+                          </li>
+                          <li>
+                            <a href="#itemicon" class="toc-h3 toc-link" data-title="ItemIcon">ItemIcon</a>
+                          </li>
+                          <li>
+                            <a href="#itemiconkind" class="toc-h3 toc-link" data-title="ItemIconKind">ItemIconKind</a>
                           </li>
                       </ul>
                   </li>
@@ -586,6 +595,12 @@
                       <ul class="toc-list-h3">
                           <li>
                             <a href="#skillkind" class="toc-h3 toc-link" data-title="SkillKind">SkillKind</a>
+                          </li>
+                          <li>
+                            <a href="#skillicon" class="toc-h3 toc-link" data-title="SkillIcon">SkillIcon</a>
+                          </li>
+                          <li>
+                            <a href="#skilliconkind" class="toc-h3 toc-link" data-title="SkillIconKind">SkillIconKind</a>
                           </li>
                           <li>
                             <a href="#skillrank" class="toc-h3 toc-link" data-title="SkillRank">SkillRank</a>
@@ -771,6 +786,9 @@
                     <a href="#decorationkind" class="toc-h2 toc-link" data-title="DecorationKind">DecorationKind</a>
                   </li>
                   <li>
+                    <a href="#color" class="toc-h2 toc-link" data-title="Color">Color</a>
+                  </li>
+                  <li>
                     <a href="#decorationslot" class="toc-h2 toc-link" data-title="DecorationSlot">DecorationSlot</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -919,6 +937,24 @@ field.</p>
 
 <p>Some examples have their properties truncated to save space. Any time you see &quot;[...]&quot;, this indicates that the example
 has been truncated, but there would normally be much more data present in the response.</p>
+<h2 id='versioning'>Versioning</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-04-18T03:29:46+00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>A sample <code>Version</code> response.</p>
+</blockquote>
+
+<p>The API provides a <code>/version</code> endpoint that responds with the timestamp that the importers last ran. This, effectively,
+serves as a &quot;version&quot; for the API: as long as your cached data is newer than the timestamp, your local data is
+up-to-date. If it is not, some or all of your local data may be out of sync.</p>
+
+<p>This can be used for long-term storage of cached data, separate from the <a href="#caching">caching behavior</a> that is
+implemented for the entire API through Cloudflare.</p>
+<h5 id='http-request'>HTTP Request</h5>
+<p><code>GET https://wilds.mhdb.io/version</code></p>
+
+<p>Note that unlike other endpoints in the API, this endpoint does not support a <code>{{locale}}</code> parameter.</p>
 <h1 id='ailments'>Ailments</h1><h2 id='ailments-properties'>Properties</h2>
 <table><thead>
 <tr>
@@ -1983,6 +2019,11 @@ has been truncated, but there would normally be much more data present in the re
 <td>Array&lt;<a href="#itemrecipe">ItemRecipe</a>&gt;</td>
 <td>An array of crafting recipes that produce the item</td>
 </tr>
+<tr>
+<td>icon</td>
+<td><a href="#itemicon">ItemIcon</a></td>
+<td>Icon information</td>
+</tr>
 </tbody></table>
 <h3 id='itemrecipe'>ItemRecipe</h3>
 <table><thead>
@@ -2006,6 +2047,137 @@ has been truncated, but there would normally be much more data present in the re
 <td>inputs</td>
 <td>Array&lt;<a href="#items">Item</a>&gt;</td>
 <td>An array of items consumed by the recipe</td>
+</tr>
+</tbody></table>
+<h3 id='itemicon'>ItemIcon</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><a href="#gameid">GameId</a></td>
+<td>The ID used by the game files to identify the icon</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="#itemiconkind">ItemIconKind</a></td>
+<td>The string representation of the icon; will be used in the future to identify asset files</td>
+</tr>
+<tr>
+<td>colorId</td>
+<td><a href="#gameid">GameId</a></td>
+<td>The ID used by the game files to identify the icon&#39;s color</td>
+</tr>
+<tr>
+<td>color</td>
+<td><a href="#color">Color</a></td>
+<td>The string representation of the icon&#39;s color</td>
+</tr>
+</tbody></table>
+<h3 id='itemiconkind'>ItemIconKind</h3>
+<p>An enumerated value, one of the following:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ammo-basic</td>
+<td>ammo-heavy</td>
+<td>ammo-slug</td>
+<td>ammo-special</td>
+<td>ammo-utility</td>
+<td>armor-sphere</td>
+</tr>
+<tr>
+<td>barrel</td>
+<td>binoculars</td>
+<td>bone</td>
+<td>bug</td>
+<td>camping-kit</td>
+<td>capture-net</td>
+</tr>
+<tr>
+<td>certificate</td>
+<td>claw</td>
+<td>coin</td>
+<td>cooking-cheese</td>
+<td>cooking-egg</td>
+<td>cooking-garlic</td>
+</tr>
+<tr>
+<td>cooking-mushroom</td>
+<td>cooking-shellfish</td>
+<td>crystal</td>
+<td>curative</td>
+<td>drug</td>
+<td>egg</td>
+</tr>
+<tr>
+<td>extract</td>
+<td>fishing-rod</td>
+<td>fish</td>
+<td>gem</td>
+<td>grill</td>
+<td>hide</td>
+</tr>
+<tr>
+<td>honey</td>
+<td>mantle</td>
+<td>meat</td>
+<td>medulla</td>
+<td>mushroom</td>
+<td>mystery-artian</td>
+</tr>
+<tr>
+<td>mystery-decoration</td>
+<td>mystery-material</td>
+<td>nut</td>
+<td>ore</td>
+<td>phial</td>
+<td>pill</td>
+</tr>
+<tr>
+<td>plant</td>
+<td>plate</td>
+<td>poop</td>
+<td>potion</td>
+<td>powder</td>
+<td>question</td>
+</tr>
+<tr>
+<td>scale</td>
+<td>seed</td>
+<td>shell</td>
+<td>skull</td>
+<td>slinger-ammo</td>
+<td>smoke</td>
+</tr>
+<tr>
+<td>sprout</td>
+<td>tail</td>
+<td>trap</td>
+<td>trap-tool</td>
+<td>voucher</td>
+<td>web</td>
+</tr>
+<tr>
+<td>whetstone</td>
+<td>wing</td>
+<td>knife</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='list-all-items'>List all items</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/items"</span>
@@ -2032,9 +2204,15 @@ has been truncated, but there would normally be much more data present in the re
                         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
                     </span><span class="p">}</span><span class="w">
                 </span><span class="p">],</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"potion"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"colorId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"green"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -2066,12 +2244,19 @@ has been truncated, but there would normally be much more data present in the re
                     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">67</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"potion"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"colorId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"green"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre></div>
 <p>This endpoint retrieves an item by its ID.</p>
 <h5 id='items-http-request'>HTTP Request</h5>
@@ -3075,6 +3260,11 @@ has been truncated, but there would normally be much more data present in the re
 <td><a href="#skillkind">SkillKind</a></td>
 <td>Where a skill can be found</td>
 </tr>
+<tr>
+<td>icon</td>
+<td><a href="#skillicon">SkillIcon</a></td>
+<td>Icon information</td>
+</tr>
 </tbody></table>
 <h3 id='skillkind'>SkillKind</h3>
 <p>An enumerated value, one of the following:</p>
@@ -3100,6 +3290,61 @@ has been truncated, but there would normally be much more data present in the re
 <tr>
 <td>group</td>
 <td>Skill can be found in armor group bonuses</td>
+</tr>
+</tbody></table>
+<h3 id='skillicon'>SkillIcon</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><a href="#gameid">GameId</a></td>
+<td>The ID used by the game files to identify the icon</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="#skilliconkind">SkillIconKind</a></td>
+<td>The string representation of the icon; will be used in the future to identify asset files</td>
+</tr>
+</tbody></table>
+<h3 id='skilliconkind'>SkillIconKind</h3>
+<p>An enumerated value, one of the following:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>affinity</td>
+<td>attack</td>
+<td>defense</td>
+<td>element</td>
+</tr>
+<tr>
+<td>gathering</td>
+<td>group</td>
+<td>handicraft</td>
+<td>health</td>
+</tr>
+<tr>
+<td>item</td>
+<td>offense</td>
+<td>ranged</td>
+<td>set</td>
+</tr>
+<tr>
+<td>stamina</td>
+<td>utility</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h3 id='skillrank'>SkillRank</h3>
@@ -3138,20 +3383,27 @@ has been truncated, but there would normally be much more data present in the re
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Resistance"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduces damage while poisoned."</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragon Resistance"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"armor"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Increases dragon resistance. Also improves [...]"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduces the number of times you take poison damage."</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragon resistance +6"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
-        </span><span class="p">]</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"defense"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2125233152</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
@@ -3164,20 +3416,27 @@ has been truncated, but there would normally be much more data present in the re
 <p>Returns a single <a href="#skills">Skill</a> object.</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Poison Resistance"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduces damage while poisoned."</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragon Resistance"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"armor"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Increases dragon resistance. Also improves [...]"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reduces the number of times you take poison damage."</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragon resistance +6"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"defense"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2125233152</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><h5 id='skills-http-request'>HTTP Request</h5>
 <p><code>GET https://wilds.mhdb.io/{locale}/skills/{id}</code></p>
@@ -4969,6 +5228,54 @@ small number of possible variants is not feasible or does not make sense.</p>
 <tr>
 <td>weapon</td>
 <td>armor</td>
+</tr>
+</tbody></table>
+<h2 id='color'>Color</h2>
+<p>An enumerated value, one of the following:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>white</td>
+<td>gray</td>
+<td>rose</td>
+<td>pink</td>
+</tr>
+<tr>
+<td>red</td>
+<td>vermilion</td>
+<td>orange</td>
+<td>brown</td>
+</tr>
+<tr>
+<td>ivory</td>
+<td>yellow</td>
+<td>lemon</td>
+<td>sage-green</td>
+</tr>
+<tr>
+<td>moss-green</td>
+<td>green</td>
+<td>emerald</td>
+<td>sky</td>
+</tr>
+<tr>
+<td>blue</td>
+<td>ultramarine</td>
+<td>blue-purple</td>
+<td>purple</td>
+</tr>
+<tr>
+<td>dark-purple</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 <h2 id='decorationslot'>DecorationSlot</h2>
