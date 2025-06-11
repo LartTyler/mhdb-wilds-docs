@@ -166,7 +166,7 @@ Note that unlike other endpoints in the API, this endpoint does not support a `{
 When an object, property, or feature is being phased out, a best-effort attempt will be made to ensure that the field
 remains for at least a short period of time, to give API consumers a chance to replace the feature with something else.
 The [section below](#schedule) lists features that are currently deprecated, along with their replacement (if there is
-one), and approximately when the deprecated feature will be removed completely. The standard removal window is 2 weeks
+one), and approximately when the deprecated feature will be removed completely. The standard removal window is 3 weeks
 from the release that deprecated the feature.
 
 Dates listed in the deprecation schedule indicate the _earliest_ that a feature will be removed. Often, removal of
@@ -180,7 +180,7 @@ to do so, but sometimes it just isn't possible. In such cases, an announcement w
 ### Schedule
 |Feature|Removal Date|Replacement|More Info|
 |---|---|---|---|
-|`Monster.breakableParts`|2025-06-24|[`Monster.parts`](#monsters-properties)|[Link](#deprecation-monster-breakableparts)|
+|`Monster.breakableParts`|2025-07-03|[`Monster.parts`](#monsters-properties)|[Link](#deprecation-monster-breakableparts)|
 
 #### Deprecation: `Monster.breakableParts`
 This feature was added without much consideration behind it. The name is confusing, and the objects inside the array
