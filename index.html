@@ -290,12 +290,13 @@
     </style>
     <link href="stylesheets/screen-9d778116.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-966d6edc.css" rel="stylesheet" media="print" />
-    <link href="stylesheets/styles-61a06503.css" rel="stylesheet" />
+    <link href="stylesheets/styles-02cdb34a.css" rel="stylesheet" />
       <script src="javascripts/all-782fee6e.js"></script>
 
     <script>
       $(function() { setupCodeCopy(); });
     </script>
+    <link href="images/favicon-2a90c6c8.png" rel="icon" type="image/png" />
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;]">
@@ -306,7 +307,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/logo-985f0ed0.png" class="logo" alt="" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
         </div>
@@ -340,6 +341,19 @@
                   </li>
                   <li>
                     <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
+                  </li>
+                  <li>
+                    <a href="#deprecations" class="toc-h2 toc-link" data-title="Deprecations">Deprecations</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#schedule" class="toc-h3 toc-link" data-title="Schedule">Schedule</a>
+                              <ul class="toc-list-h4">
+                                  <li>
+                                    <a href="#deprecation-monster-breakableparts" class="toc-h4 toc-link" data-title="Deprecation: <code>Monster.breakableParts</code>">Deprecation: <code>Monster.breakableParts</code></a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
                   </li>
               </ul>
           </li>
@@ -442,6 +456,11 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#decorations-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#decorationicon" class="toc-h3 toc-link" data-title="DecorationIcon">DecorationIcon</a>
+                          </li>
+                      </ul>
                   </li>
                   <li>
                     <a href="#list-all-decorations" class="toc-h2 toc-link" data-title="List all decorations">List all decorations</a>
@@ -548,6 +567,9 @@
                                     <a href="#effectweakness" class="toc-h4 toc-link" data-title="EffectWeakness">EffectWeakness</a>
                                   </li>
                               </ul>
+                          </li>
+                          <li>
+                            <a href="#monsterpart" class="toc-h3 toc-link" data-title="MonsterPart">MonsterPart</a>
                           </li>
                           <li>
                             <a href="#monsterreward" class="toc-h3 toc-link" data-title="MonsterReward">MonsterReward</a>
@@ -800,6 +822,12 @@
                     <a href="#craftingcost" class="toc-h2 toc-link" data-title="CraftingCost">CraftingCost</a>
                   </li>
                   <li>
+                    <a href="#kinsectessence" class="toc-h2 toc-link" data-title="KinsectEssence">KinsectEssence</a>
+                  </li>
+                  <li>
+                    <a href="#damagemultipliers" class="toc-h2 toc-link" data-title="DamageMultipliers">DamageMultipliers</a>
+                  </li>
+                  <li>
                     <a href="#union-types" class="toc-h2 toc-link" data-title="Union Types">Union Types</a>
                   </li>
               </ul>
@@ -841,18 +869,13 @@
   This API is a work in progress. Some endpoints do not yet contain data, and will simply return an empty
   JSON array or object (depending on the endpoint).<br><br>
 
-  Currently, the following objects have been fully populated into the API:<br>
+  Currently, the following objects <em>have not</em> been added to the API:<br>
   <ul>
-    <li><a href="#armor">Armor</a></li>
-    <li><a href="#armor-sets">Armor Sets</a></li>
-    <li><a href="#charms">Charms</a></li>
-    <li><a href="#decorations">Decorations</a></li>
-    <li><a href="#items">Items</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#weapons">Weapons</a></li>
-    <li><a href="#monsters">Monsters</a></li>
-    <li><a href="#locations">Locations</a></li>
+    <li><a href="#ailments">Ailments</a></li>
+    <li><a href="#motion-values">Motion Values</a></li>
   </ul>
+
+  All other endpoints listed in the docs are complete.
 
   Want to help get more data into the API? <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>! Deciphering the
   game files and building the importers needed to populate the API is time consuming, and assistance is always welcome.
@@ -955,6 +978,48 @@ implemented for the entire API through Cloudflare.</p>
 <p><code>GET https://wilds.mhdb.io/version</code></p>
 
 <p>Note that unlike other endpoints in the API, this endpoint does not support a <code>{{locale}}</code> parameter.</p>
+<h2 id='deprecations'>Deprecations</h2>
+<p>When an object, property, or feature is being phased out, a best-effort attempt will be made to ensure that the field
+remains for at least a short period of time, to give API consumers a chance to replace the feature with something else.
+The <a href="#schedule">section below</a> lists features that are currently deprecated, along with their replacement (if there is
+one), and approximately when the deprecated feature will be removed completely. The standard removal window is 3 weeks
+from the release that deprecated the feature.</p>
+
+<p>Dates listed in the deprecation schedule indicate the <em>earliest</em> that a feature will be removed. Often, removal of
+deprecations will be bundled with other updates, and it may take longer than the specified date to fully remove the
+feature.</p>
+
+<p>Additionally, please be aware that it is not always possible to cleanly deprecate a feature. Every attempt will be made
+to do so, but sometimes it just isn&#39;t possible. In such cases, an announcement will be made ahead of time in the
+<a href="https://discord.gg/6GEHHQh">Discord server</a> with an estimate of when the feature will be removed.</p>
+<h3 id='schedule'>Schedule</h3>
+<table><thead>
+<tr>
+<th>Feature</th>
+<th>Removal Date</th>
+<th>Replacement</th>
+<th>More Info</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Monster.breakableParts</code></td>
+<td>2025-07-03</td>
+<td><a href="#monsters-properties"><code>Monster.parts</code></a></td>
+<td><a href="#deprecation-monster-breakableparts">Link</a></td>
+</tr>
+</tbody></table>
+<h4 id='deprecation-monster-breakableparts'>Deprecation: <code>Monster.breakableParts</code></h4>
+<p>This feature was added without much consideration behind it. The name is confusing, and the objects inside the array
+aren&#39;t what you might assume at first glance.</p>
+
+<p>This field has only ever contained parts that can be broken, <em>and that also</em> have an entry in the reward table. For
+example, Rathian only listed two parts in this field (both wings), because those were the only two parts with drop
+table entries. You <em>can</em> break Rathian&#39;s head, but since the drop table didn&#39;t include it, it wasn&#39;t included in this
+array.</p>
+
+<p>The replacement, <a href="#monsters-properties"><code>Monster.parts</code></a>, includes <em>all</em> parts, like you&#39;d expect. Additionally, since
+the parts list is now being pulled from the actual part data file, and not just inferred from the drop tables, more data
+like base health, damage type modifiers, and kinsect essence can be included.</p>
 <h1 id='ailments'>Ailments</h1><h2 id='ailments-properties'>Properties</h2>
 <table><thead>
 <tr>
@@ -1893,6 +1958,30 @@ implemented for the entire API through Cloudflare.</p>
 <td>Array&lt;<a href="#skillrank">SkillRank</a>&gt;</td>
 <td>The skills granted by this decoration</td>
 </tr>
+<tr>
+<td>icon</td>
+<td><a href="#decorationicon">DecorationIcon</a></td>
+<td>Icon information</td>
+</tr>
+</tbody></table>
+<h3 id='decorationicon'>DecorationIcon</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>color</td>
+<td><a href="#color">Color</a></td>
+<td>The string representation of the icon&#39;s color</td>
+</tr>
+<tr>
+<td>colorId</td>
+<td><a href="#gameid">GameId</a></td>
+<td>The ID used by the game files to identify the icon&#39;s color</td>
+</tr>
 </tbody></table>
 <h2 id='list-all-decorations'>List all decorations</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/decorations"</span>
 </code></pre></div>
@@ -1918,6 +2007,10 @@ implemented for the entire API through Cloudflare.</p>
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"purple"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"colorId"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+        </span><span class="p">},</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2144349312</span><span class="w">
     </span><span class="p">},</span><span class="w">
@@ -1950,6 +2043,10 @@ implemented for the entire API through Cloudflare.</p>
             </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"purple"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"colorId"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+    </span><span class="p">},</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2144349312</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2525,9 +2622,9 @@ implemented for the entire API through Cloudflare.</p>
 <td>Items can be obtained from fighting the monster</td>
 </tr>
 <tr>
-<td>breakableParts</td>
+<td>parts</td>
 <td>Array&lt;<a href="#monsterpart">MonsterPart</a>&gt;</td>
-<td>Monster parts that can be broken; corresponds to <code>broken-part</code> entries in <code>rewards</code></td>
+<td>An array of various parts and hitzones on the monster</td>
 </tr>
 </tbody></table>
 <h3 id='monsterkind'>MonsterKind</h3>
@@ -2618,6 +2715,9 @@ implemented for the entire API through Cloudflare.</p>
 <h3 id='monsterresistance'>MonsterResistance</h3>
 <p>A union type, identified by the <code>kind</code> field.</p>
 
+<p>These objects correspond roughly to the resistances listed in the monster field guide in-game. For a detailed breakdown
+of per-hitzone damage modifiers, see <a href="#monsters-properties"><code>Monster.parts</code></a>.</p>
+
 <table><thead>
 <tr>
 <th>Property</th>
@@ -2692,10 +2792,24 @@ implemented for the entire API through Cloudflare.</p>
 </tr>
 </tbody></table>
 <h4 id='effectresistance'>EffectResistance</h4>
-<p>|Property|Type|Description|
-|effect|<a href="#effect">Effect</a>|The effect the monster is resistant to|</p>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>effect</td>
+<td><a href="#effect">Effect</a></td>
+<td>The effect the monster is resistant to</td>
+</tr>
+</tbody></table>
 <h3 id='monsterweakness'>MonsterWeakness</h3>
 <p>A union type, identified by the <code>kind</code> field.</p>
+
+<p>These objects correspond roughly to the weaknesses listed in the monster field guide in-game. For a detailed breakdown
+of per-hitzone damage modifiers, see <a href="#monsters-properties"><code>Monster.parts</code></a>.</p>
 
 <table><thead>
 <tr>
@@ -2789,6 +2903,50 @@ implemented for the entire API through Cloudflare.</p>
 <td>The effect the monster is weak to</td>
 </tr>
 </tbody></table>
+<h3 id='monsterpart'>MonsterPart</h3>
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>The part&#39;s ID</td>
+</tr>
+<tr>
+<td>kind</td>
+<td><a href="#enum-like">Enum-like</a></td>
+<td>Which part of the monster this is</td>
+</tr>
+<tr>
+<td>health</td>
+<td>Integer</td>
+<td>The base health of the part</td>
+</tr>
+<tr>
+<td>kinsectEssence</td>
+<td><a href="#kinsectessence">KinsectEssence</a></td>
+<td>Which kinsect essence color, if any, is gained by hitting the part</td>
+</tr>
+<tr>
+<td>multipliers</td>
+<td><a href="#damagemultipliers">DamageMultipliers</a></td>
+<td>An object containing modifiers for different damage types against the part</td>
+</tr>
+</tbody></table>
+
+<p>Unlike in previous versions, monster parts no longer contain the translations for their <code>kind</code> field. Most monsters have
+at least 6 distinct parts listed in the game files, and with each part having 14 translations (at the time of writing)
+there would be over 2500 mostly duplicated strings added to the system.</p>
+
+<p>To simplify this, the translations for each part <code>kind</code> can instead be found
+<a href="https://github.com/LartTyler/mhdb-wilds-data/blob/main/output/merged/PartNames.json">here</a>. That file contains an array
+of part kinds and all the translations for that part. If your application needs to display part information and you
+would like to include the name of the part, it is recommended that you bundle that file with your application and use it
+to obtain the part names.</p>
 <h3 id='monsterreward'>MonsterReward</h3>
 <table><thead>
 <tr>
@@ -2839,7 +2997,7 @@ implemented for the entire API through Cloudflare.</p>
 <tr>
 <td>part</td>
 <td><a href="#enum-like">Enum-like</a></td>
-<td>Only populated for <code>broken-part</code> rewards; if set, corresponds to an entry in <a href="#monsters"><code>Monster.breakableParts</code></a> indicating which part needs to be broken</td>
+<td>Only populated for <code>broken-part</code> rewards; if set, corresponds to an entry in <a href="#monsters-properties"><code>Monster.parts</code></a> indicating which part needs to be broken</td>
 </tr>
 </tbody></table>
 <h4 id='rewardconditionkind'>RewardConditionKind</h4>
@@ -2889,21 +3047,23 @@ implemented for the entire API through Cloudflare.</p>
         </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flying-wyvern"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rey Dau"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The flying wyvern that reigns [...]"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"ailments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Windward Plains"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"zoneCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1226157568</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="nl">"resistances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noise"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"effect"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"element"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thunder"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"element"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="nl">"weaknesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
@@ -2911,7 +3071,7 @@ implemented for the entire API through Cloudflare.</p>
                 </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"element"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">241</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">249</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
         </span><span class="p">],</span><span class="w">
@@ -2925,7 +3085,13 @@ implemented for the entire API through Cloudflare.</p>
                     </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Rey Dau scale. Its unique shape allows [...]"</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">620</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"carryLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                    </span><span class="nl">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scale"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"colorId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yellow"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="nl">"conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
@@ -2934,14 +3100,15 @@ implemented for the entire API through Cloudflare.</p>
                         </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"chance"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
                         </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1747</span><span class="w">
                     </span><span class="p">},</span><span class="w">
                     </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
                 </span><span class="p">],</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">465</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">494</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
         </span><span class="p">],</span><span class="w">
+        </span><span class="nl">"elements"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
         </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The flying wyvern that reigns supreme over the [...]"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"tips"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When a Rey Dau's wing or tail touches the ground while [...]"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"baseHealth"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -2955,14 +3122,28 @@ implemented for the entire API through Cloudflare.</p>
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="nl">"breakableParts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="nl">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left-wing"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"monster"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
                 </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="s2">"corner"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Horn"</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="w">
+                </span><span class="nl">"multipliers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"slash"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"blunt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"pierce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"fire"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"water"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"thunder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"ice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"dragon"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"stun"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left-wing"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left-wing"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"health"</span><span class="p">:</span><span class="w"> </span><span class="mi">260</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"kinsectEssence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">313</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
         </span><span class="p">],</span><span class="w">
@@ -2990,21 +3171,23 @@ implemented for the entire API through Cloudflare.</p>
     </span><span class="nl">"species"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flying-wyvern"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rey Dau"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The flying wyvern that reigns [...]"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ailments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="nl">"locations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Windward Plains"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"zoneCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1226157568</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"resistances"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noise"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"effect"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"element"</span><span class="p">:</span><span class="w"> </span><span class="s2">"thunder"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"element"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">69</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"weaknesses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -3012,7 +3195,7 @@ implemented for the entire API through Cloudflare.</p>
             </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"element"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"condition"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">241</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">249</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -3026,7 +3209,13 @@ implemented for the entire API through Cloudflare.</p>
                 </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A Rey Dau scale. Its unique shape allows [...]"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">620</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"carryLimit"</span><span class="p">:</span><span class="w"> </span><span class="mi">99</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="nl">"recipes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scale"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"colorId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yellow"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="nl">"conditions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
@@ -3035,14 +3224,15 @@ implemented for the entire API through Cloudflare.</p>
                     </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"chance"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1616</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1747</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
             </span><span class="p">],</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">465</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">494</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"elements"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="nl">"features"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The flying wyvern that reigns supreme over the [...]"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"tips"</span><span class="p">:</span><span class="w"> </span><span class="s2">"When a Rey Dau's wing or tail touches the ground while [...]"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"baseHealth"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
@@ -3056,14 +3246,28 @@ implemented for the entire API through Cloudflare.</p>
             </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"breakableParts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"parts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left-wing"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"monster"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="s2">"corner"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Horn"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="w">
+            </span><span class="nl">"multipliers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"slash"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"blunt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"pierce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"fire"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"water"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"thunder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"ice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"dragon"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"stun"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"part"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left-wing"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left-wing"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"health"</span><span class="p">:</span><span class="w"> </span><span class="mi">260</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kinsectEssence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">313</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -5113,8 +5317,7 @@ the data merger does have that
 a rule of thumb, an Enum-like value should be treated like you would a normal enum variant, but you should operate under
 the assumption that new variants could be added at any time, possibly without notice. Most of the time, an enum-like
 will be accompanied by another value that provides a useful description for the thing represented by the enum-like
-value. Using monster parts as the example again, the <a href="#monsters"><code>Monster.breakableParts</code></a> array contains a list of the
-parts referenced by the enum-like value, and includes the localized version of that part&#39;s name.</p>
+value.</p>
 
 <p>Enum-like values will be used very sparingly across this API, and will only appear in cases where limiting a value to a
 small number of possible variants is not feasible or does not make sense.</p>
@@ -5142,19 +5345,16 @@ small number of possible variants is not feasible or does not make sense.</p>
 <th></th>
 <th></th>
 <th></th>
-<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>fire</td>
 <td>water</td>
 <td>ice</td>
-<td>thunder</td>
 </tr>
 <tr>
+<td>thunder</td>
 <td>dragon</td>
-<td>blast</td>
-<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -5175,13 +5375,34 @@ small number of possible variants is not feasible or does not make sense.</p>
 <td>paralysis</td>
 <td>stun</td>
 </tr>
+<tr>
+<td>blastblight</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody></table>
 <h2 id='effect'>Effect</h2>
-<p>An enumerated value, one of the following:
-||||
-|-|-|-|
-|noise|flash|stun|
-|exhaust|||</p>
+<p>An enumerated value, one of the following:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>noise</td>
+<td>flash</td>
+<td>stun</td>
+</tr>
+<tr>
+<td>exhaust</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <h2 id='damagekind'>DamageKind</h2>
 <p>An enumerated value, one of the following:</p>
 
@@ -5343,6 +5564,96 @@ elements in the array.</p>
 <td>item</td>
 <td><a href="#items">Item</a></td>
 <td>The item used as a material for the craft</td>
+</tr>
+</tbody></table>
+<h2 id='kinsectessence'>KinsectEssence</h2>
+<p>An enumerated value (or <code>null</code>), one of the following:</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>white</td>
+<td>orange</td>
+<td>red</td>
+</tr>
+<tr>
+<td>green</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='damagemultipliers'>DamageMultipliers</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"slash"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"blunt"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pierce"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.45</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fire"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"water"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"thunder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ice"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dragon"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stun"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Each property on this object is a float between 0 and 1 for each damage type in the game. For example, if <code>slash</code> has
+a value of <code>0.45</code> and an attack would deal a base damage of <code>100</code>, the resulting damage would instead be
+<code>100 × 0.45 = 45</code>.</p>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>slash</td>
+<td>Float</td>
+<td>The modifier for slash damage</td>
+</tr>
+<tr>
+<td>blunt</td>
+<td>Float</td>
+<td>The modifier for blunt damage</td>
+</tr>
+<tr>
+<td>pierce</td>
+<td>Float</td>
+<td>The modifier for pierce damage</td>
+</tr>
+<tr>
+<td>fire</td>
+<td>Float</td>
+<td>The modifier for fire damage</td>
+</tr>
+<tr>
+<td>water</td>
+<td>Float</td>
+<td>The modifier for water damage</td>
+</tr>
+<tr>
+<td>thunder</td>
+<td>Float</td>
+<td>The modifier for thunder damage</td>
+</tr>
+<tr>
+<td>ice</td>
+<td>Float</td>
+<td>The modifier for ice damage</td>
+</tr>
+<tr>
+<td>dragon</td>
+<td>Float</td>
+<td>The modifier for dragon damage</td>
+</tr>
+<tr>
+<td>stun</td>
+<td>Float</td>
+<td>The modifier for stun damage</td>
 </tr>
 </tbody></table>
 <h2 id='union-types'>Union Types</h2><div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
