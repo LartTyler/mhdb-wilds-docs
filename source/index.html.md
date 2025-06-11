@@ -41,18 +41,13 @@ meta:
   This API is a work in progress. Some endpoints do not yet contain data, and will simply return an empty
   JSON array or object (depending on the endpoint).<br><br>
 
-  Currently, the following objects have been fully populated into the API:<br>
+  Currently, the following objects <em>have not</em> been added to the API:<br>
   <ul>
-    <li><a href="#armor">Armor</a></li>
-    <li><a href="#armor-sets">Armor Sets</a></li>
-    <li><a href="#charms">Charms</a></li>
-    <li><a href="#decorations">Decorations</a></li>
-    <li><a href="#items">Items</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#weapons">Weapons</a></li>
-    <li><a href="#monsters">Monsters</a></li>
-    <li><a href="#locations">Locations</a></li>
+    <li><a href="#ailments">Ailments</a></li>
+    <li><a href="#motion-values">Motion Values</a></li>
   </ul>
+
+  All other endpoints listed in the docs are complete.
 
   Want to help get more data into the API? <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>! Deciphering the
   game files and building the importers needed to populate the API is time consuming, and assistance is always welcome.
