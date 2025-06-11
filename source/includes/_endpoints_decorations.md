@@ -12,6 +12,13 @@
 |rarity|Integer|The decoration's rarity|
 |kind|[DecorationKind](#decorationkind)|What equipment group the decoration is allowed to be used on|
 |skills|Array<[SkillRank](#skillrank)>|The skills granted by this decoration|
+|icon|[DecorationIcon](#decorationicon)|Icon information|
+
+### DecorationIcon
+|Property|Type|Description|
+|---|---|---|
+|color|[Color](#color)|The string representation of the icon's color|
+|colorId|[GameId](#gameid)|The ID used by the game files to identify the icon's color|
 
 ## List all decorations
 ```shell
@@ -40,6 +47,10 @@ curl "{{URL}}/en/decorations"
                 "id": 25
             }
         ],
+        "icon": {
+            "color": "purple",
+            "colorId": 20
+        },
         "id": 1,
         "gameId": -2144349312
     },
@@ -78,6 +89,10 @@ curl "{{URL}}/en/decorations/1"
             "id": 25
         }
     ],
+    "icon": {
+        "color": "purple",
+        "colorId": 20
+    },
     "id": 1,
     "gameId": -2144349312
 }

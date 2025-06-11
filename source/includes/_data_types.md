@@ -61,8 +61,7 @@ As you can see, that enum is incredibly long, and maybe only half of the variant
 a rule of thumb, an Enum-like value should be treated like you would a normal enum variant, but you should operate under
 the assumption that new variants could be added at any time, possibly without notice. Most of the time, an enum-like
 will be accompanied by another value that provides a useful description for the thing represented by the enum-like
-value. Using monster parts as the example again, the [`Monster.breakableParts`](#monsters) array contains a list of the
-parts referenced by the enum-like value, and includes the localized version of that part's name.
+value.
 
 Enum-like values will be used very sparingly across this API, and will only appear in cases where limiting a value to a
 small number of possible variants is not feasible or does not make sense.
@@ -77,10 +76,10 @@ An enumerated value, one of the following:
 ## Element
 An enumerated value, one of the following:
 
-|||||
-|-|-|-|-|
-|fire|water|ice|thunder|
-|dragon|blast|||
+||||
+|-|-|-|
+|fire|water|ice|
+|thunder|dragon||
 
 ## Status
 An enumerated value, one of the following:
@@ -88,9 +87,11 @@ An enumerated value, one of the following:
 |||||
 |-|-|-|-|
 |poison|sleep|paralysis|stun|
+|blastblight||||
 
 ## Effect
 An enumerated value, one of the following:
+
 ||||
 |-|-|-|
 |noise|flash|stun|
@@ -156,6 +157,45 @@ An enumerated value, one of the following:
 |---|---|---|
 |quantity|Integer|The amount of the item required for the craft|
 |item|[Item](#items)|The item used as a material for the craft|
+
+## KinsectEssence
+An enumerated value (or `null`), one of the following:
+
+||||
+|-|-|-|
+|white|orange|red|
+|green|||
+
+## DamageMultipliers
+```json
+{
+    "slash": 0.45,
+    "blunt": 0.5,
+    "pierce": 0.45,
+    "fire": 0.05,
+    "water": 0.1,
+    "thunder": 0,
+    "ice": 0.15,
+    "dragon": 0.05,
+    "stun": 0
+}
+```
+
+Each property on this object is a float between 0 and 1 for each damage type in the game. For example, if `slash` has
+a value of `0.45` and an attack would deal a base damage of `100`, the resulting damage would instead be
+`100 × 0.45 = 45`.
+
+|Property|Type|Description|
+|---|---|---|
+|slash|Float|The modifier for slash damage|
+|blunt|Float|The modifier for blunt damage|
+|pierce|Float|The modifier for pierce damage|
+|fire|Float|The modifier for fire damage|
+|water|Float|The modifier for water damage|
+|thunder|Float|The modifier for thunder damage|
+|ice|Float|The modifier for ice damage|
+|dragon|Float|The modifier for dragon damage|
+|stun|Float|The modifier for stun damage|
 
 ## Union Types
 ```json

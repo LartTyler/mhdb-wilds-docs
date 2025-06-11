@@ -18,7 +18,7 @@
 |resistances|Array<[MonsterResistance](#monsterresistance)>|The monster's elemental and status resistances|
 |weaknesses|Array<[MonsterWeakness](#monsterweakness)>|The monster's elemental and status weaknesses|
 |rewards|Array<[MonsterReward](#monsterreward)>|Items can be obtained from fighting the monster|
-|breakableParts|Array<[MonsterPart](#monsterpart)>|Monster parts that can be broken; corresponds to `broken-part` entries in `rewards`|
+|parts|Array<[MonsterPart](#monsterpart)>|An array of various parts and hitzones on the monster|
 
 ### MonsterKind
 An enumerated value, one of:
@@ -49,6 +49,9 @@ An enumerated value, one of:
 ### MonsterResistance
 A union type, identified by the `kind` field.
 
+These objects correspond roughly to the resistances listed in the monster field guide in-game. For a detailed breakdown
+of per-hitzone damage modifiers, see [`Monster.parts`](#monsters-properties).
+
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The resistance's ID|
@@ -76,10 +79,14 @@ The discriminant for the [MonsterResistance](#monsterresistance) [tagged union](
 
 #### EffectResistance
 |Property|Type|Description|
+|---|---|---|
 |effect|[Effect](#effect)|The effect the monster is resistant to|
 
 ### MonsterWeakness
 A union type, identified by the `kind` field.
+
+These objects correspond roughly to the weaknesses listed in the monster field guide in-game. For a detailed breakdown
+of per-hitzone damage modifiers, see [`Monster.parts`](#monsters-properties).
 
 |Property|Type|Description|
 |---|---|---|
@@ -112,6 +119,25 @@ The discriminant for the [MonsterWeakness](#monsterweakness) [tagged union](#uni
 |---|---|---|
 |effect|[Effect](#effect)|The effect the monster is weak to|
 
+### MonsterPart
+|Property|Type|Description|
+|---|---|---|
+|id|Integer|The part's ID|
+|kind|[Enum-like](#enum-like)|Which part of the monster this is|
+|health|Integer|The base health of the part|
+|kinsectEssence|[KinsectEssence](#kinsectessence)|Which kinsect essence color, if any, is gained by hitting the part|
+|multipliers|[DamageMultipliers](#damagemultipliers)|An object containing modifiers for different damage types against the part|
+
+Unlike in previous versions, monster parts no longer contain the translations for their `kind` field. Most monsters have
+at least 6 distinct parts listed in the game files, and with each part having 14 translations (at the time of writing)
+there would be over 2500 mostly duplicated strings added to the system.
+
+To simplify this, the translations for each part `kind` can instead be found
+[here](https://github.com/LartTyler/mhdb-wilds-data/blob/main/output/merged/PartNames.json). That file contains an array
+of part kinds and all the translations for that part. If your application needs to display part information and you
+would like to include the name of the part, it is recommended that you bundle that file with your application and use it
+to obtain the part names.
+
 ### MonsterReward
 |Property|Type|Description|
 |---|---|---|
@@ -125,7 +151,7 @@ The discriminant for the [MonsterWeakness](#monsterweakness) [tagged union](#uni
 |rank|[Rank](#rank)|The hunter rank group for the reward|
 |quantity|Integer|The base amount of the item that can be given by the reward|
 |chance|Percent|How likely it is that the reward will be given|
-|part|[Enum-like](#enum-like)|Only populated for `broken-part` rewards; if set, corresponds to an entry in [`Monster.breakableParts`](#monsters) indicating which part needs to be broken|
+|part|[Enum-like](#enum-like)|Only populated for `broken-part` rewards; if set, corresponds to an entry in [`Monster.parts`](#monsters-properties) indicating which part needs to be broken|
 
 #### RewardConditionKind
 An enumerated value, one of:
@@ -156,21 +182,23 @@ curl "{{URL}}/en/monsters"
         "species": "flying-wyvern",
         "name": "Rey Dau",
         "description": "The flying wyvern that reigns [...]",
+        "ailments": [],
         "locations": [
             {
                 "name": "Windward Plains",
                 "zoneCount": 17,
-                "id": 22,
+                "id": 2,
                 "gameId": -1226157568
             }
         ],
         "resistances": [
             {
-                "effect": "noise",
-                "kind": "effect",
+                "element": "thunder",
+                "kind": "element",
                 "condition": null,
-                "id": 44
-            }
+                "id": 69
+            },
+            [...]
         ],
         "weaknesses": [
             {
@@ -178,7 +206,7 @@ curl "{{URL}}/en/monsters"
                 "kind": "element",
                 "level": 1,
                 "condition": null,
-                "id": 241
+                "id": 249
             },
             [...]
         ],
@@ -192,7 +220,13 @@ curl "{{URL}}/en/monsters"
                     "description": "A Rey Dau scale. Its unique shape allows [...]",
                     "value": 620,
                     "carryLimit": 99,
-                    "recipes": []
+                    "recipes": [],
+                    "icon": {
+                        "id": 43,
+                        "kind": "scale",
+                        "colorId": 10,
+                        "color": "yellow"
+                    }
                 },
                 "conditions": [
                     {
@@ -201,14 +235,15 @@ curl "{{URL}}/en/monsters"
                         "quantity": 1,
                         "chance": 25,
                         "part": null,
-                        "id": 1616
+                        "id": 1747
                     },
                     [...]
                 ],
-                "id": 465
+                "id": 494
             },
             [...]
         ],
+        "elements": [],
         "features": "The flying wyvern that reigns supreme over the [...]",
         "tips": "When a Rey Dau's wing or tail touches the ground while [...]",
         "baseHealth": 5000,
@@ -222,14 +257,28 @@ curl "{{URL}}/en/monsters"
                 "id": 2
             }
         ],
-        "breakableParts": [
+        "parts": [
             {
+                "kind": "left-wing",
                 "monster": {
                     "id": 3
                 },
-                "part": "corner",
-                "name": "Horn",
-                "id": 97
+                "multipliers": {
+                    "slash": 0.45,
+                    "blunt": 0.5,
+                    "pierce": 0.45,
+                    "fire": 0.05,
+                    "water": 0.1,
+                    "thunder": 0,
+                    "ice": 0.15,
+                    "dragon": 0.05,
+                    "stun": 0
+                },
+                "part": "left-wing",
+                "name": "left-wing",
+                "health": 260,
+                "kinsectEssence": "white",
+                "id": 313
             },
             [...]
         ],
@@ -263,21 +312,23 @@ curl "{{URL}}/en/monsters/20"
     "species": "flying-wyvern",
     "name": "Rey Dau",
     "description": "The flying wyvern that reigns [...]",
+    "ailments": [],
     "locations": [
         {
             "name": "Windward Plains",
             "zoneCount": 17,
-            "id": 22,
+            "id": 2,
             "gameId": -1226157568
         }
     ],
     "resistances": [
         {
-            "effect": "noise",
-            "kind": "effect",
+            "element": "thunder",
+            "kind": "element",
             "condition": null,
-            "id": 44
-        }
+            "id": 69
+        },
+        [...]
     ],
     "weaknesses": [
         {
@@ -285,7 +336,7 @@ curl "{{URL}}/en/monsters/20"
             "kind": "element",
             "level": 1,
             "condition": null,
-            "id": 241
+            "id": 249
         },
         [...]
     ],
@@ -299,7 +350,13 @@ curl "{{URL}}/en/monsters/20"
                 "description": "A Rey Dau scale. Its unique shape allows [...]",
                 "value": 620,
                 "carryLimit": 99,
-                "recipes": []
+                "recipes": [],
+                "icon": {
+                    "id": 43,
+                    "kind": "scale",
+                    "colorId": 10,
+                    "color": "yellow"
+                }
             },
             "conditions": [
                 {
@@ -308,14 +365,15 @@ curl "{{URL}}/en/monsters/20"
                     "quantity": 1,
                     "chance": 25,
                     "part": null,
-                    "id": 1616
+                    "id": 1747
                 },
                 [...]
             ],
-            "id": 465
+            "id": 494
         },
         [...]
     ],
+    "elements": [],
     "features": "The flying wyvern that reigns supreme over the [...]",
     "tips": "When a Rey Dau's wing or tail touches the ground while [...]",
     "baseHealth": 5000,
@@ -329,14 +387,28 @@ curl "{{URL}}/en/monsters/20"
             "id": 2
         }
     ],
-    "breakableParts": [
+    "parts": [
         {
+            "kind": "left-wing",
             "monster": {
                 "id": 3
             },
-            "part": "corner",
-            "name": "Horn",
-            "id": 97
+            "multipliers": {
+                "slash": 0.45,
+                "blunt": 0.5,
+                "pierce": 0.45,
+                "fire": 0.05,
+                "water": 0.1,
+                "thunder": 0,
+                "ice": 0.15,
+                "dragon": 0.05,
+                "stun": 0
+            },
+            "part": "left-wing",
+            "name": "left-wing",
+            "health": 260,
+            "kinsectEssence": "white",
+            "id": 313
         },
         [...]
     ],

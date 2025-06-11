@@ -7,7 +7,7 @@ language_tabs: # must be one of https://github.com/rouge-ruby/rouge/wiki/List-of
 toc_footers:
   - <a href="https://github.com/LartTyler/mhdb-{{ID}}">Visit the project on Github</a>
   - <a href="https://discord.gg/6GEHHQh">Join us on Discord</a>
-  - <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support us on Ko-fi', '#72a4f2', 'E1E41BOLDX');kofiwidget2.draw();</script> 
+  - <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support us on Ko-fi', '#72a4f2', 'E1E41BOLDX');kofiwidget2.draw();</script>
 
 includes:
   - endpoints_ailments
@@ -31,7 +31,7 @@ search: true
 code_clipboard: true
 
 meta:
-  - 
+  -
     name: description
     content: "Documentation for the unofficial Monster Hunter: {{TITLE}} API"
 ---
@@ -166,3 +166,36 @@ implemented for the entire API through Cloudflare.
 `GET {{URL}}/version`
 
 Note that unlike other endpoints in the API, this endpoint does not support a `{{locale}}` parameter.
+
+## Deprecations
+When an object, property, or feature is being phased out, a best-effort attempt will be made to ensure that the field
+remains for at least a short period of time, to give API consumers a chance to replace the feature with something else.
+The [section below](#schedule) lists features that are currently deprecated, along with their replacement (if there is
+one), and approximately when the deprecated feature will be removed completely. The standard removal window is 2 weeks
+from the release that deprecated the feature.
+
+Dates listed in the deprecation schedule indicate the _earliest_ that a feature will be removed. Often, removal of
+deprecations will be bundled with other updates, and it may take longer than the specified date to fully remove the
+feature.
+
+Additionally, please be aware that it is not always possible to cleanly deprecate a feature. Every attempt will be made
+to do so, but sometimes it just isn't possible. In such cases, an announcement will be made ahead of time in the
+[Discord server](https://discord.gg/6GEHHQh) with an estimate of when the feature will be removed.
+
+### Schedule
+|Feature|Removal Date|Replacement|More Info|
+|---|---|---|---|
+|`Monster.breakableParts`|2025-06-24|[`Monster.parts`](#monsters-properties)|[Link](#deprecation-monster-breakableparts)|
+
+#### Deprecation: `Monster.breakableParts`
+This feature was added without much consideration behind it. The name is confusing, and the objects inside the array
+aren't what you might assume at first glance.
+
+This field has only ever contained parts that can be broken, _and that also_ have an entry in the reward table. For
+example, Rathian only listed two parts in this field (both wings), because those were the only two parts with drop
+table entries. You _can_ break Rathian's head, but since the drop table didn't include it, it wasn't included in this
+array.
+
+The replacement, [`Monster.parts`](#monsters-properties), includes _all_ parts, like you'd expect. Additionally, since
+the parts list is now being pulled from the actual part data file, and not just inferred from the drop tables, more data
+like base health, damage type modifiers, and kinsect essence can be included.
