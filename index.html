@@ -347,11 +347,6 @@
                       <ul class="toc-list-h3">
                           <li>
                             <a href="#schedule" class="toc-h3 toc-link" data-title="Schedule">Schedule</a>
-                              <ul class="toc-list-h4">
-                                  <li>
-                                    <a href="#deprecation-monster-breakableparts" class="toc-h4 toc-link" data-title="Deprecation: <code>Monster.breakableParts</code>">Deprecation: <code>Monster.breakableParts</code></a>
-                                  </li>
-                              </ul>
                           </li>
                       </ul>
                   </li>
@@ -1002,24 +997,12 @@ to do so, but sometimes it just isn&#39;t possible. In such cases, an announceme
 </tr>
 </thead><tbody>
 <tr>
-<td><code>Monster.breakableParts</code></td>
-<td>2025-07-03</td>
-<td><a href="#monsters-properties"><code>Monster.parts</code></a></td>
-<td><a href="#deprecation-monster-breakableparts">Link</a></td>
+<td>There are currently no active deprecations.</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
-<h4 id='deprecation-monster-breakableparts'>Deprecation: <code>Monster.breakableParts</code></h4>
-<p>This feature was added without much consideration behind it. The name is confusing, and the objects inside the array
-aren&#39;t what you might assume at first glance.</p>
-
-<p>This field has only ever contained parts that can be broken, <em>and that also</em> have an entry in the reward table. For
-example, Rathian only listed two parts in this field (both wings), because those were the only two parts with drop
-table entries. You <em>can</em> break Rathian&#39;s head, but since the drop table didn&#39;t include it, it wasn&#39;t included in this
-array.</p>
-
-<p>The replacement, <a href="#monsters-properties"><code>Monster.parts</code></a>, includes <em>all</em> parts, like you&#39;d expect. Additionally, since
-the parts list is now being pulled from the actual part data file, and not just inferred from the drop tables, more data
-like base health, damage type modifiers, and kinsect essence can be included.</p>
 <h1 id='ailments'>Ailments</h1><h2 id='ailments-properties'>Properties</h2>
 <table><thead>
 <tr>
