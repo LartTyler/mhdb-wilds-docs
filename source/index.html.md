@@ -180,17 +180,4 @@ to do so, but sometimes it just isn't possible. In such cases, an announcement w
 ### Schedule
 |Feature|Removal Date|Replacement|More Info|
 |---|---|---|---|
-|`Monster.breakableParts`|2025-07-03|[`Monster.parts`](#monsters-properties)|[Link](#deprecation-monster-breakableparts)|
-
-#### Deprecation: `Monster.breakableParts`
-This feature was added without much consideration behind it. The name is confusing, and the objects inside the array
-aren't what you might assume at first glance.
-
-This field has only ever contained parts that can be broken, _and that also_ have an entry in the reward table. For
-example, Rathian only listed two parts in this field (both wings), because those were the only two parts with drop
-table entries. You _can_ break Rathian's head, but since the drop table didn't include it, it wasn't included in this
-array.
-
-The replacement, [`Monster.parts`](#monsters-properties), includes _all_ parts, like you'd expect. Additionally, since
-the parts list is now being pulled from the actual part data file, and not just inferred from the drop tables, more data
-like base health, damage type modifiers, and kinsect essence can be included.
+|There are currently no active deprecations.||||
