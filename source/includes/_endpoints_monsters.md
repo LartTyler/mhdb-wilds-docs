@@ -160,7 +160,7 @@ An enumerated value, one of:
 |-|-|-|-|
 |carve|carve-severed|endemic-capture|target-reward|
 |broken-part|wound-destroyed|carve-rotten|slinger-gather|
-|carve-rotten-severed|tempered-wound-destroyed|carve-crystallized||
+|carve-rotten-severed|tempered-wound-destroyed|carve-crystallized|broken-fragment|
 
 ## List all monsters
 ```shell
