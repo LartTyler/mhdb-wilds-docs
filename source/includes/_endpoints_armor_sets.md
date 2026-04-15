@@ -8,22 +8,8 @@
 |gameId|[GameId](#gameid)|The armor set's ID from the game files|
 |name|String|The armor set's name|
 |pieces|Array<[Armor](#armor)>|An array of armor pieces belonging to the armor set|
-|bonus|[ArmorSetBonus](#armorsetbonus)|The skill granted by the set when a certain number of pieces from the same set are worn|
-|groupBonus|[ArmorSetBonus](#armorsetbonus)|The skill granted by the set when a certain number of pieces from the same group are worn|
-
-### ArmorSetBonus
-|Property|Type|Description|
-|---|---|---|
-|id|Integer|The bonus's ID|
-|skill|[Skill](#skills)|The skill granted by the bonus|
-|ranks|Array<[ArmorSetBonusRank](#armorsetbonusrank)>|The different ranks of the bonus|
-
-### ArmorSetBonusRank
-|Property|Type|Description|
-|---|---|---|
-|id|Integer|The rank's ID|
-|pieces|Integer|The number of armor pieces from the set that must be worn to activate the bonus|
-|skill|[SkillRank](#skillrank)|The skill granted by this rank of the bonus|
+|setBonusSkill|[Skill](#skills)|The skill granted by the set when a certain number of pieces from the same set are worn|
+|groupBonusSkill|[Skill](#skills)|The skill granted by the set when a certain number of pieces from the same group are worn|
 
 ## List all armor sets
 ```shell
@@ -37,30 +23,29 @@ curl "{{URL}}/en/armor/sets"
     {
         "name": "Conga α",
         "pieces": [...],
-        "bonus": null,
-        "groupBonus": {
-            "id": 1,
-            "skill": {
-                "id": 142,
-                "name": "Fortifying Pelt"
-            },
+        "setBonusSkill": null,
+        "groupBonusSkill": {
+            "id": 150,
+            "gameId": 1998066176,
+            "name": "Fortifying Pelt",
             "ranks": [
                 {
-                    "bonus": {
-                        "id": 1
-                    },
-                    "pieces": 3,
                     "skill": {
-                        "id": 381,
-                        "skill": {
-                            "id": 142
-                        },
-                        "level": 1,
-                        "description": "Increases attack and defense after fainting during a quest. (Can be used twice.)"
+                        "id": 150
                     },
-                    "id": 1
+                    "level": 1,
+                    "name": "Fortify",
+                    "description": "Increases attack and defense after fainting during a quest. (Can be used twice.)",
+                    "setPiecesRequired": 3,
+                    "id": 394
                 }
-            ]
+            ],
+            "description": null,
+            "kind": "group",
+            "icon": {
+                "id": 13,
+                "kind": "group"
+            }
         },
         "id": 1,
         "gameId": -2117203456
@@ -85,31 +70,8 @@ curl "{{URL}}/en/armor/sets/1"
 {
     "name": "Conga α",
     "pieces": [...],
-    "bonus": null,
-    "groupBonus": {
-        "id": 1,
-        "skill": {
-            "id": 142,
-            "name": "Fortifying Pelt"
-        },
-        "ranks": [
-            {
-                "bonus": {
-                    "id": 1
-                },
-                "pieces": 3,
-                "skill": {
-                    "id": 381,
-                    "skill": {
-                        "id": 142
-                    },
-                    "level": 1,
-                    "description": "Increases attack and defense after fainting during a quest. (Can be used twice.)"
-                },
-                "id": 1
-            }
-        ]
-    },
+    "setBonusSkill": null,
+    "groupBonusSkill": {...},
     "id": 1,
     "gameId": -2117203456
 }

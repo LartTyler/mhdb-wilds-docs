@@ -30,20 +30,21 @@ An enumerated value, one of the following:
 ### SkillIconKind
 An enumerated value, one of the following:
 
-|||||  
-|---|---|---|---|  
-|affinity|attack|defense|element|  
-|gathering|group|handicraft|health|  
-|item|offense|ranged|set|  
+|||||
+|---|---|---|---|
+|affinity|attack|defense|element|
+|gathering|group|handicraft|health|
+|item|offense|ranged|set|
 |stamina|utility|||
 
 ### SkillRank
 |Property|Type|Description|
 |---|---|---|
 |id|Integer|The skill rank's ID|
-|name|String|The rank's name; always `null` except for on set and group bonus skills|
+|name|String|The rank's name; always `null` except on set and group bonus skills|
 |description|String|The rank's description|
 |level|Integer|The skill level of the rank|
+|setPiecesRequired|Integer|The number of set pieces required to activate this rank of the skill; always `null` except on set or group bonus skills|
 
 ## List all skills
 ```shell
@@ -67,6 +68,7 @@ curl "{{URL}}/en/skills"
                 "name": null,
                 "description": "Dragon resistance +6",
                 "id": 1
+                "setPiecesRequired": null
             },
             [...]
         ],
@@ -105,7 +107,8 @@ curl "{{URL}}/en/skills/1"
             "level": 1,
             "name": null,
             "description": "Dragon resistance +6",
-            "id": 1
+            "id": 1,
+            "setPiecesRequired": null
         },
         [...]
     ],
