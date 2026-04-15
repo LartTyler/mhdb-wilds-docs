@@ -407,14 +407,6 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#armor-sets-properties" class="toc-h2 toc-link" data-title="Properties">Properties</a>
-                      <ul class="toc-list-h3">
-                          <li>
-                            <a href="#armorsetbonus" class="toc-h3 toc-link" data-title="ArmorSetBonus">ArmorSetBonus</a>
-                          </li>
-                          <li>
-                            <a href="#armorsetbonusrank" class="toc-h3 toc-link" data-title="ArmorSetBonusRank">ArmorSetBonusRank</a>
-                          </li>
-                      </ul>
                   </li>
                   <li>
                     <a href="#list-all-armor-sets" class="toc-h2 toc-link" data-title="List all armor sets">List all armor sets</a>
@@ -1504,62 +1496,14 @@ to do so, but sometimes it just isn&#39;t possible. In such cases, an announceme
 <td>An array of armor pieces belonging to the armor set</td>
 </tr>
 <tr>
-<td>bonus</td>
-<td><a href="#armorsetbonus">ArmorSetBonus</a></td>
+<td>setBonusSkill</td>
+<td><a href="#skills">Skill</a></td>
 <td>The skill granted by the set when a certain number of pieces from the same set are worn</td>
 </tr>
 <tr>
-<td>groupBonus</td>
-<td><a href="#armorsetbonus">ArmorSetBonus</a></td>
-<td>The skill granted by the set when a certain number of pieces from the same group are worn</td>
-</tr>
-</tbody></table>
-<h3 id='armorsetbonus'>ArmorSetBonus</h3>
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>The bonus&#39;s ID</td>
-</tr>
-<tr>
-<td>skill</td>
+<td>groupBonusSkill</td>
 <td><a href="#skills">Skill</a></td>
-<td>The skill granted by the bonus</td>
-</tr>
-<tr>
-<td>ranks</td>
-<td>Array&lt;<a href="#armorsetbonusrank">ArmorSetBonusRank</a>&gt;</td>
-<td>The different ranks of the bonus</td>
-</tr>
-</tbody></table>
-<h3 id='armorsetbonusrank'>ArmorSetBonusRank</h3>
-<table><thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Integer</td>
-<td>The rank&#39;s ID</td>
-</tr>
-<tr>
-<td>pieces</td>
-<td>Integer</td>
-<td>The number of armor pieces from the set that must be worn to activate the bonus</td>
-</tr>
-<tr>
-<td>skill</td>
-<td><a href="#skillrank">SkillRank</a></td>
-<td>The skill granted by this rank of the bonus</td>
+<td>The skill granted by the set when a certain number of pieces from the same group are worn</td>
 </tr>
 </tbody></table>
 <h2 id='list-all-armor-sets'>List all armor sets</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/armor/sets"</span>
@@ -1571,30 +1515,29 @@ to do so, but sometimes it just isn&#39;t possible. In such cases, an announceme
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Conga α"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"pieces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-        </span><span class="nl">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"groupBonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fortifying Pelt"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
+        </span><span class="nl">"setBonusSkill"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"groupBonusSkill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1998066176</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fortifying Pelt"</span><span class="p">,</span><span class="w">
             </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="nl">"pieces"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
                     </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">381</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="w">
-                        </span><span class="p">},</span><span class="w">
-                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                        </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Increases attack and defense after fainting during a quest. (Can be used twice.)"</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="w">
                     </span><span class="p">},</span><span class="w">
-                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fortify"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Increases attack and defense after fainting during a quest. (Can be used twice.)"</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"setPiecesRequired"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">394</span><span class="w">
                 </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"icon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"group"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2117203456</span><span class="w">
@@ -1613,31 +1556,8 @@ to do so, but sometimes it just isn&#39;t possible. In such cases, an announceme
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Conga α"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"pieces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
-    </span><span class="nl">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"groupBonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fortifying Pelt"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nl">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"pieces"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">381</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"skill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">142</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Increases attack and defense after fainting during a quest. (Can be used twice.)"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"setBonusSkill"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"groupBonusSkill"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">},</span><span class="w">
     </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2117203456</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1676,6 +1596,11 @@ to do so, but sometimes it just isn&#39;t possible. In such cases, an announceme
 <td>gameId</td>
 <td><a href="#gameid">GameId</a></td>
 <td>The ID used in the game files to identify the charm</td>
+</tr>
+<tr>
+<td>randomized</td>
+<td>Boolean</td>
+<td>Indicates that this amulet is randomly generated, e.g. the &quot;Golden Age Charm&quot;. Randomly generated amulets will have no skills or crafting recipe.</td>
 </tr>
 <tr>
 <td>ranks</td>
@@ -1758,7 +1683,6 @@ to do so, but sometimes it just isn&#39;t possible. In such cases, an announceme
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-2084662144</span><span class="p">,</span><span class="w">
         </span><span class="nl">"ranks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -3550,7 +3474,7 @@ to obtain the part names.</p>
 <tr>
 <td>name</td>
 <td>String</td>
-<td>The rank&#39;s name; always <code>null</code> except for on set and group bonus skills</td>
+<td>The rank&#39;s name; always <code>null</code> except on set and group bonus skills</td>
 </tr>
 <tr>
 <td>description</td>
@@ -3561,6 +3485,11 @@ to obtain the part names.</p>
 <td>level</td>
 <td>Integer</td>
 <td>The skill level of the rank</td>
+</tr>
+<tr>
+<td>setPiecesRequired</td>
+<td>Integer</td>
+<td>The number of set pieces required to activate this rank of the skill; always <code>null</code> except on set or group bonus skills</td>
 </tr>
 </tbody></table>
 <h2 id='list-all-skills'>List all skills</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://wilds.mhdb.io/en/skills"</span>
@@ -3582,6 +3511,7 @@ to obtain the part names.</p>
                 </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragon resistance +6"</span><span class="p">,</span><span class="w">
                 </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                </span><span class="nl">"setPiecesRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
         </span><span class="p">],</span><span class="w">
@@ -3614,7 +3544,8 @@ to obtain the part names.</p>
             </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
             </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dragon resistance +6"</span><span class="p">,</span><span class="w">
-            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"setPiecesRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">[</span><span class="err">...</span><span class="p">]</span><span class="w">
     </span><span class="p">],</span><span class="w">
