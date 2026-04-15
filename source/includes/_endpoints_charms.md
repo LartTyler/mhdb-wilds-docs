@@ -6,6 +6,7 @@
 |---|---|---|
 |id|Integer|The charm's ID|
 |gameId|[GameId](#gameid)|The ID used in the game files to identify the charm|
+|randomized|Boolean|Indicates that this amulet is randomly generated, e.g. the "Golden Age Charm". Randomly generated amulets will have no skills or crafting recipe.|
 |ranks|Array<[CharmRank](#charmrank)>|An array levels the charm can be obtained at|
 
 ### CharmRank
@@ -36,7 +37,6 @@ curl "{{URL}}/en/charms"
 ```json
 [
     {
-        
         "id": 1,
         "gameId": -2084662144,
         "ranks": [
